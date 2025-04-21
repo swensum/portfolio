@@ -1,0 +1,49 @@
+:root {
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: dark light; /* Helps with native browser elements */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh; /* Crucial for full viewport height */
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: 
+    background-color 0.3s ease, 
+    color 0.3s ease;
+}
+
+/* Remove all @media (prefers-color-scheme) rules - handled by theme.scss */
+
+/* Keep your existing styles below - just ensure they use theme variables */
+a {
+  font-weight: 500;
+  color: var(--primary-color); /* Using theme variable with fallback */
+  text-decoration: inherit;
+}
+a:hover {
+  color: var(--secondary-color); /* Using theme variable */
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--bg-secondary); /* Using theme variable */
+  color: var(--text-primary); /* Using theme variable */
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: var(--primary-color); /* Using theme variable */
+}

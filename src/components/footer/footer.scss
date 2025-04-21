@@ -1,0 +1,126 @@
+@import '../../styles/theme';
+
+.portfolio-footer {
+  background-color: darken($bg-primary, 5%);
+  padding: 2rem 1rem;
+  text-align: center;
+  width: 100%;
+  flex-shrink: 0;
+
+ 
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  
+    a {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: translateY(-3px);
+      }
+  
+      // GitHub
+      &:first-child {
+        color: rgb(188, 188, 188); // GitHub's brand color
+        &:hover {
+          color: white; // GitHub hover color
+        }
+      }
+  
+      // LinkedIn
+      &:nth-child(2) {
+        color: #0077b5; // LinkedIn's brand color
+        &:hover {
+          color: #00a0dc; // LinkedIn hover color
+        }
+      }
+  
+      // Facebook
+      &:nth-child(3) {
+        color: #3b5998; // Facebook's brand color
+        &:hover {
+          color: #5d85d4; // Facebook hover color
+        }
+      }
+  
+      // WhatsApp
+      &:nth-child(4) {
+        color: #25D366; // WhatsApp's brand color
+        &:hover {
+          color: #1a9c8d; // WhatsApp hover color
+        }
+      }
+    }
+  
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+
+    a {
+      color: $light-color;
+      text-decoration: none;
+      font-family: $font-family-primary;
+      font-size: 1rem;
+      position: relative;
+      padding: 0.5rem 0;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: #cac70c;
+        transition: width 0.3s ease;
+      }
+
+      &:hover::after {
+        width: 100%;
+      }
+    }
+  }
+
+  .footer-copyright {
+    p {
+      color: rgba($light-color, 0.7);
+      font-size: 0.9rem;
+      margin: 0.5rem 0;
+      font-family: $font-family-primary;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-footer {
+    padding: 2rem 1rem;
+
+    .footer-social {
+      gap: 1.2rem;
+      
+      a {
+        font-size: 1.3rem;
+      }
+    }
+
+    .footer-links {
+      gap: 1rem;
+      font-size: 0.9rem;
+    }
+  }
+}

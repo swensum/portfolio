@@ -1,0 +1,562 @@
+@import '../../styles/theme';
+
+.skills-page {
+    padding: 4rem;
+    display: flex;
+    justify-content: space-between;
+    z-index: $z-index-low;
+    
+    .skills-section {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .skill-row{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+     
+
+    .skills-container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 450px;
+        margin-top: 20px;
+        margin-left: 100px;
+        
+        .skills-heading {
+            font-size: clamp(3rem, 2vw, 1rem);
+            font-family: $font-family-primary;
+            font-weight: bold;
+            letter-spacing: 0px;
+            
+            .heading-text {
+                margin-bottom: 0;
+                display: inline-block;
+            }
+            
+            .heading-line {
+                position: relative;
+                display: inline-block;
+                
+                .heading-underline {
+                    position: absolute;
+                    left: 100%;
+                    bottom: 0.2em;
+                    width: 100px;
+                    height: 2px;
+                    background: currentColor;
+                    margin-left: 4px;
+                }
+            }
+        }
+        
+        .expert {
+            margin-top: -10px;
+            font-size: clamp(1.1rem, 1vw, 1rem);
+            font-family: $font-family-primary;
+        }
+
+        .certificate{
+          margin-top: 30px;
+          padding: 20px 23px;
+          background-color:$primary-color;
+          color: $light-color;
+          font-family: $font-family-secondary;
+          font-size: 1.1rem;
+          font-weight: bold;
+          cursor: pointer;
+          border: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          transition: $transition-normal;
+          outline: none;
+          border-radius: 16px;
+          margin-right: 0; 
+          .cert-icon {
+              width: 20px;
+              height: 20px;
+              transition: $transition-normal;
+              color: currentColor;
+            }
+          &:hover {
+              background-color:#cac70c;
+              color: $dark-color;
+              .cert-icon {
+                  transform: translateX(3px);
+                }
+          }  
+          
+        }
+    }
+
+    .right-section {
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+        margin-top: 100px;
+       margin-right: 6%;
+        align-self: flex-start;
+    }
+    
+    .skill-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 30px;
+        gap: 80px;
+        
+        .skills {
+            color: $text-light;
+            text-decoration: none;
+            transition: $transition-normal;
+            padding: 14px 18px; 
+            position: relative;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: none; 
+            font-family: $font-family-secondary;
+            border: 2px solid transparent;
+            outline: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            border-radius: 12px;
+            
+            .skills-arrow {
+                width: 16px;
+                height: 16px;
+                transition: $transition-normal;
+                color: currentColor;
+            }
+            
+            &:hover, &.active {
+                color: #cac70c;
+                border-color: #cac70c;
+                
+                .skills-arrow {
+                    transform: translateX(3px) rotate(45deg);
+                }
+            }
+        }
+    }
+    
+    .skills-icons-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        row-gap: 2rem;
+        column-gap: 5rem;
+        width: 100%;
+        margin-left: 10px;
+        margin-top: 20px;
+        opacity: 1; 
+        animation: slideInFromRight 1s ease-out forwards; 
+        
+        .skill-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            
+            .icon-circle {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: $dark-color;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                
+                .icon {
+                    font-size: 1.5rem;
+                    color: $light-color;
+                }
+            }
+            
+            span {
+                font-family: $font-family-primary;
+                font-size: 1rem;
+                font-weight: bold;
+               
+            }
+             
+        }
+    }
+    .experience-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        margin-top: 20px;
+        margin-left: 80px;
+        row-gap: 2rem;
+        column-gap: 4rem;
+        animation: slideInFromRight 1s ease-out forwards;
+       
+        
+        .experience-item {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          
+          .experience-period {
+            font-family: $font-family-secondary;
+            font-size: 1rem;
+            color: #cac70c;
+          }
+          
+          .experience-company {
+            font-family: $font-family-primary;
+            font-size: 1.03rem;
+           font-weight: 500;
+            position: relative;
+            padding-bottom: 20px; // Optional, for spacing
+          
+            &::after {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 30px; // Adjust the dash length
+              height: 2px;
+              border-bottom: 2px solid #cac70c;
+            }
+          
+          }
+          
+          .experience-position {
+            padding-top: 3px;
+            font-family: $font-family-primary;
+            font-weight: bold;
+            font-size: 1.5rem;
+            font-style: italic;
+          }
+        }
+      }
+      .education-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        min-width: 600px;
+        margin-top: 20px;
+        margin-left: 80px;
+        row-gap: 3rem;
+        
+        animation: slideInFromRight 1s ease-out forwards;
+       
+        
+        .education-item {
+          display: flex;
+          flex-direction: column;
+          gap: 0.25rem;
+          
+          .education-period {
+            font-family: $font-family-secondary;
+            font-size: 1rem;
+            color: #cac70c;
+          }
+          
+          .education-company {
+            font-family: $font-family-primary;
+            font-size: 1.03rem;
+           font-weight: 500;
+            position: relative;
+            padding-bottom: 20px; // Optional, for spacing
+          
+            &::after {
+              content: '';
+              position: absolute;
+              bottom: 0;
+              left: 0;
+              width: 30px; // Adjust the dash length
+              height: 2px;
+              border-bottom: 2px solid #cac70c;
+            }
+          
+          }
+          
+          .education-position {
+            padding-top: 3px;
+            font-family: $font-family-primary;
+            font-weight: bold;
+            font-size: 1.5rem;
+            font-style: italic;
+          }
+        }
+      }
+    }
+    .numbers-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 10%;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 10px;
+      gap: 160px; 
+      
+      .number-item {
+        text-align: center;
+        flex: 1;
+        padding: 0 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center; // This centers everything horizontally
+        
+        .number-back {
+          background: #cac70c;
+          width: 100px; // Increased for better proportion
+          height: 100px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 15px; // Space between circle and label
+        }
+        
+        .number {
+        
+          font-size: 3.5rem; // Reduced from 4rem
+          font-weight: bold;
+          color: $dark-color;
+          font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+          font-style: italic;
+         
+
+        }
+        
+        .number-label {
+          font-family: $font-family-primary;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          font-weight: bold;
+          margin-top: 10px; // This will now work
+          // Add these if you need more control:
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
+      }
+    }
+    .certificates-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      .modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+      
+      .modal-content {
+        position: relative;
+        background: white;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        padding-bottom: 3rem;
+        border-radius: 8px;
+        max-width: 800px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        z-index: 1001;
+        @media (prefers-color-scheme: dark) {
+          background: $dark-color;
+      }
+        
+        h3{
+          font-size: 2.5rem;
+          font-family: $font-family-primary;
+        }
+        .certificates-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+          gap: 1.5rem;
+          margin-top: 1.5rem;
+        }
+        
+        .certificate-item {
+          
+          border: 6px solid $success-color;
+          border-radius: 8px;
+          overflow: hidden;
+          
+
+            
+            img {
+             border-bottom: 2px solid $success-color;
+              width: 100%;
+              height: auto;
+              object-fit: cover;
+              transition: transform 0.3s ease;
+              
+              &:hover {
+                transform: scale(1.05);
+              }
+            }
+          
+          
+          .certificate-info {
+            padding: 1rem;
+            
+            h4 {
+              font-family: $font-family-secondary;
+              margin: 0 0 0.5rem 0;
+              font-size: 2rem;
+            }
+            
+            p, span {
+              font-family: $font-family-primary;
+              margin: 0.25rem 0;
+              font-size: 1.3rem;
+              color: #666;
+              @media (prefers-color-scheme: dark) {
+                color: $light-color;
+            }
+            }
+          }
+        }
+      }
+      
+        
+        .close-button {
+          position: fixed;
+          top: 3.5rem;
+          right: 14rem;
+          background: none;
+          border: 3px solid $light-color;
+          border-radius: 30%;
+          width: 3rem;
+          height: 3rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 0; // Crucial for icon visibility
+          margin: 0;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          z-index: 1002; // Ensure it's above other elements
+      
+          // Direct icon styling
+          > svg {
+            width: 1.2rem;
+            height: 1.2rem;
+            color: $light-color !important; // Force color
+            fill: currentColor !important; // SVG specific
+          }
+      
+          @media (prefers-color-scheme: dark) {
+            border-color: $light-color;
+            
+            > svg {
+              color: $light-color !important;
+              fill: currentColor !important;
+            }
+          }
+      
+          &:hover {
+           border-radius: 50%;
+          }
+        }
+      }
+    }
+    
+    
+    
+    
+    @keyframes slideInFromRight {
+      0% {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    @media screen and (max-width: 768px) {
+      .skills-page {
+        flex-direction: column;
+        padding: 2rem 1rem;
+    
+        .skill-row {
+          flex-direction: column;
+        }
+    
+        .skills-container {
+          margin-left: 0;
+          align-items: center;
+          text-align: center;
+    
+          .skills-heading {
+            font-size: 2rem;
+          }
+    
+          .expert {
+            font-size: 1rem;
+          }
+    
+          .certificate {
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+          }
+        }
+    
+        .right-section {
+          max-width: 1%;
+          align-self: center;
+        }
+    
+        .skill-buttons {
+        
+          flex-direction: column;
+          align-items: center;
+          gap: 2px;
+        }
+    
+        .skills-icons-container {
+          grid-template-columns: repeat(3, 1fr);
+          column-gap: 1rem;
+        }
+    
+        .experience-container,
+        .education-container {
+          grid-template-columns: 1fr;
+          margin-left: 0;
+          min-width: unset;
+        }
+    
+        .numbers-container {
+          flex-direction: column;
+          align-items: center;
+          gap: 50px;
+          margin-top: 3rem;
+        }
+    
+        .certificates-modal {
+          .modal-content {
+            padding: 1rem;
+    
+            .certificates-grid {
+              grid-template-columns: 1fr;
+            }
+          }
+        }
+      }
+    }
+    
+   

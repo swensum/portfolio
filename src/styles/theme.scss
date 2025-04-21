@@ -1,0 +1,98 @@
+// Color Palette
+$primary-color: #6244c5;       // Main brand color
+$secondary-color: #ffc448;      // Secondary accent color
+$dark-color: #2c3e50;           // Dark backgrounds/text
+$light-color: #ecf0f1;          // Light backgrounds/text
+$danger-color: #e74c3c;         // Error/alert color
+$warning-color: #f39c12;        // Warning color
+$success-color: #27ae60;        // Success color
+
+// Text Colors
+$text-primary: $dark-color;
+$text-secondary: #7f8c8d;
+$text-light: $dark-color;
+$text-dark: $light-color;
+
+// Backgrounds
+$bg-primary: #1a1a1a;
+$bg-secondary: #f8f9fa;
+$bg-dark: $dark-color;
+$bg-light: $light-color;
+
+// Borders
+$border-radius: 4px;
+$border-color: #dfe6e9;
+
+// Shadows
+$shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+$shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+// Spacing
+$spacing-unit: 1.5rem;
+$spacing-xs: $spacing-unit * 0.5;
+$spacing-sm: $spacing-unit * 0;
+$spacing-md: $spacing-unit;
+$spacing-lg: $spacing-unit * 1.5;
+$spacing-xl: $spacing-unit * 2;
+
+// Typography
+$font-family-primary:'Space Grotesk', sans-serif;
+  
+$font-family-secondary: 'DM Sans', sans-serif;;
+$font-size-base: 1.5rem;
+$font-size-sm: $font-size-base * 0.6;
+$font-size-lg: $font-size-base * 1.25;
+$font-size-xl: $font-size-base * 1.5;
+$font-size-xxl: $font-size-base * 2;
+
+// Transitions
+$transition-fast: 0.15s ease-in-out;
+$transition-normal: 0.3s ease-in-out;
+$transition-slow: 0.5s ease-in-out;
+
+// Breakpoints
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+// Z-index
+$z-index-low: 10;
+$z-index-medium: 100;
+$z-index-high: 1000;
+
+
+root {
+    --primary-color: #{$primary-color};
+    --secondary-color: #{$secondary-color};
+    --text-primary: #{$text-primary};      
+    --text-light: #{$light-color};         
+    --text-dark: #{$dark-color};           
+    --bg-primary: #{$bg-primary};
+    --social-icon-color: #{$dark-color};  
+    --social-icon-bg: rgba(0, 0, 0, 0.01); 
+    --social-icon-hover-bg: #{$dark-color}; 
+}
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+        --text-primary: #{$light-color};   
+        --text-light: #{$light-color};      
+        --text-dark: #{$dark-color};      
+        --bg-primary: #1a1a1a;            
+        --text-secondary: #bdc3c7;         
+        --bg-secondary: #2d2d2d;          
+        --border-color: #444;
+        --social-icon-bg: rgba(255, 255, 255, 0.08); 
+        --social-icon-hover-bg: #{lighten($dark-color, 10%)}; 
+        --social-icon-color: #{$light-color}; 
+    }
+  }
+  
+  $text-light: var(--text-light);
+  $text-dark: var(--text-dark);
+  $social-icon-color: var(--social-icon-color);
+  $social-icon-bg: var(--social-icon-bg);
+$social-icon-hover-bg: var(--social-icon-hover-bg);

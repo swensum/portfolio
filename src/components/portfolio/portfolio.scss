@@ -1,0 +1,476 @@
+@import '../../styles/theme';
+
+.portfolio-page {
+  padding-top: 4rem;
+  min-height: 100vh; // Ensure full viewport height
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Center horizontally
+  z-index: $z-index-low;
+  background-color: $bg-primary; 
+  padding-bottom: 4rem;
+
+
+  .portfolio-hero {
+    width: 100%;
+    max-width: 1200px; // Optional: set a max-width for better readability
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Center children horizontally
+    padding: 2rem 1rem; // Add some padding
+  }
+
+  .portfolio-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem; // Space between heading and content below
+    
+    .port-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center; 
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-family: $font-family-secondary;
+      color: $light-color;
+      width: 100%;
+      gap: 1px;
+      margin-bottom: 0;
+      
+      .heading-port {
+        transition: color 0.3s ease;
+        white-space: nowrap; // Prevent text from wrapping
+      }
+      
+      .inline {
+        margin-top: 12px;
+        flex-grow: 1;
+        height: 2px;
+        background: $light-color;
+        max-width: 100px;
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          left: -100%;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background: #cac70c;
+          transition: transform 0.3s ease;
+        }
+      }
+      
+      &:hover {
+        .heading-port {
+          color: #cac70c;
+        }
+        
+        .inline::before {
+          transform: translateX(100%);
+        }
+      }
+    }
+  }
+  
+  .port-word {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    max-width: 800px; // Better readability for text
+    
+    .my {
+      font-size: clamp(2.3rem, 4vw, 3.5rem);
+      font-family: $font-family-secondary;
+      font-weight: bold;
+      color: #cac70c;
+      margin: 0 0 1rem 0;
+      line-height: 1.2;
+    }
+    
+    .defination {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      font-family: $font-family-primary;
+      font-weight: normal; // Changed from bold for better readability
+      color: $light-color; // Changed for better contrast
+      margin: 0;
+      line-height: 1.6;
+    }
+  }
+  // Add this to your existing portfolio.scss file
+.portfolio-categories {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    padding: 0 1rem;
+  
+    .categories-container {
+      width: 100%;
+      max-width: 1200px;
+      
+      .category-list {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+  
+        .category-item {
+          padding: 0.5rem 1.5rem;
+          font-family: $font-family-secondary;
+          font-size: 1rem;
+          color: $light-color;
+          cursor: pointer;
+          border-radius: 2rem;
+          transition: all 0.3s ease;
+          border: 1px solid rgba($light-color, 0.3);
+  
+          &:hover {
+            color: #cac70c;
+            border-color: #cac70c;
+          }
+  
+          &.active {
+            background-color: #cac70c;
+            color: $bg-primary;
+            border-color: #cac70c;
+            font-weight: bold;
+          }
+        }
+      }
+    }
+  }
+  
+  // Make sure to add media queries for responsiveness
+  @media (max-width: 768px) {
+    .portfolio-categories {
+      .categories-container {
+        .category-list {
+          gap: 0.5rem;
+          
+          .category-item {
+            padding: 0.4rem 1rem;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+  // Portfolio Grid Styles
+  .portfolio-grid {
+    width: 100%;
+    padding: 3rem 1rem;
+    
+    .grid-container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      grid-auto-rows: 200px;
+      gap: 20px;
+  
+      .portfolio-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        &.wide {
+          grid-column: span 2;
+        }
+  
+        &.tall {
+          grid-row: span 2;
+        }
+  
+        .item-image {
+          position: relative;
+          width: 100%;
+          height: 100%;
+          display: block;
+  
+          img {
+            padding: 1rem;
+            width: 100%;
+            height: 100%;
+            object-fit:fill;
+            display: block;
+            transition: transform 0.5s ease;
+          }
+  
+          .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+  
+            .overlay-content {
+              text-align: center;
+              padding: 20px;
+              color: white;
+  
+              h3 {
+                font-family: $font-family-secondary;
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+                color: #cac70c;
+              }
+  
+              .view-button {
+                margin-left: 20px;
+                color: $text-light;
+                text-decoration: none;
+                transition: $transition-normal;
+                padding: 0; 
+                position: relative;
+                font-size: 1.2rem;
+                font-weight: bold;
+                cursor: pointer;
+                background: none; 
+                font-family: $font-family-secondary;
+                border: none; 
+                outline: none;
+                display: inline-flex;
+                align-items: center;
+                gap: 8px; 
+  
+                .detail-arrow {
+                    width: 16px;
+                    height: 16px;
+                    transition: $transition-normal;
+                    color: currentColor;
+                  }
+                  &:hover {
+                    color: #cac70c;
+                    border: 1px solid  #cac70c;
+                    padding: 10px;
+        
+                    .detail-arrow {
+                      transform: translateX(3px) rotate(45deg);
+                    }
+              
+                    &::after {
+                      width: 100%;
+                    }
+                  }
+              }
+            }
+          }
+        }
+  
+        &:hover {
+          .item-image {
+            img {
+              transform: scale(1.05);
+            }
+            
+            .image-overlay {
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+  .portfolio-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    
+    .modal-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+    }
+    
+    .modal-content {
+      padding: 20px;
+      position: relative;
+      max-width: 900px;
+      width: 90%;
+      max-height: 90vh;
+      background:$dark-color;
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      z-index: 1;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      
+      .modal-close {
+        position: fixed;
+            top: 3rem;
+            right: 12rem;
+            background: none;
+            border: 3px solid $light-color;
+            border-radius: 30%;
+            width: 3rem;
+            font-size: 1.5rem;
+            height: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0; // Crucial for icon visibility
+            margin: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1002; 
+        &:hover {
+          color: $light-color;
+          border-radius: 50%;
+        }
+      }
+      
+      .video-container {
+        width: 100%;
+        max-width: 400px;
+        
+        border-radius: 18px;
+        background: #000;
+        
+        video {
+          width: 100%;
+          height: 500px;
+          display: block;
+          outline: none;
+        }
+      }
+      
+      .modal-details {
+       
+        flex: 1;
+        padding: 30px;
+        overflow-y: auto;
+        
+        h2 {
+          margin-bottom: 20px;
+          color: $light-color;
+        }
+        
+        .meta-info {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 15px;
+          margin-bottom: 20px;
+          color: $light-color;
+          font-size: 14px;
+          
+          span {
+            display: flex;
+            align-items: center;
+            
+            strong {
+              margin-right: 5px;
+              color: $light-color;
+            }
+          }
+        }
+        
+        .description {
+          margin-bottom: 25px;
+          line-height: 1.6;
+          color: $light-color;
+        }
+        
+        .technologies {
+          h4 {
+            margin-bottom: 10px;
+            color: $light-color;
+          }
+          
+          ul {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            list-style: none;
+            padding: 0;
+            
+            li {
+              background: #f0f0f0;
+              padding: 5px 12px;
+              border-radius: 20px;
+              font-size: 13px;
+              color: #555;
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .portfolio-modal {
+      .modal-content {
+        flex-direction: column;
+        padding: 1rem;
+        max-height: 95vh;
+        overflow-y: auto;
+      }
+  
+      .modal-close {
+        width: 2rem;
+        height: 2rem;
+        font-size: 1rem;
+        
+      }
+  
+      .video-container {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 1rem;
+  
+        video {
+          height: auto;
+          max-height: 300px;
+        }
+      }
+  
+      .modal-details {
+        padding: 1rem;
+  
+        h2 {
+          font-size: 1.2rem;
+        }
+  
+        .description {
+          font-size: 0.95rem;
+        }
+  
+        .meta-info {
+          font-size: 0.9rem;
+        }
+  
+        .technologies ul li {
+          font-size: 0.9rem;
+        }
+      }
+    }
+  }
+}  
