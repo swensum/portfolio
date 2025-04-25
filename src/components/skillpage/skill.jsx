@@ -6,12 +6,12 @@ import Education from '../../components/skillpage/Education';
 import CertificatesModal from '../../components/skillpage/CertificatesModal';
 import NumbersSection from '../../components/skillpage/NumbersSection';
 import { 
-  certificates, 
   targetPercentages, 
   targetCounters 
 } from '../../components/skillpage/constants';
 
 const Skills = () => {
+   const [isSkillVisible, setIsSkillVisible] = useState(false);
   const [activeButton, setActiveButton] = useState('skills');
   const [counted, setCounted] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -29,7 +29,21 @@ const Skills = () => {
     projects: 0,
     experience: 0
   });
-  
+  useEffect(() => {
+      const handleScroll = () => {
+        const skillSection = document.querySelector('.skills-section');
+        if (skillSection) {
+          const rect = skillSection.getBoundingClientRect();
+          if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+            setIsSkillVisible(true);
+          }
+        }
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
   useEffect(() => {
     const timer = setTimeout(() => {
       setCounted(true);
@@ -83,17 +97,17 @@ const Skills = () => {
   };
   return (
     <div className="skills-page">
-      <section className="skills-section">
+      <section className={`skills-section ${isSkillVisible ? 'fade-in' : ''}`}>
         <div className="skill-row">
         <div className="skills-container">
-          <h2 className="skills-heading">
+          <h2 className={`skills-heading  ${isSkillVisible  ? 'fade-in' : ''}`}>
             <span className="heading-text">
               My expert <br/>
               <span className="heading-line">areas<span className="heading-underline"></span></span>
             </span>
           </h2>
-          <p className="expert">You can express yourself however you want and whenever you want, for free. You can customize a template or make your own from scratch, with an immersive library at your disposal. You can express yourself however you want and whenever you free.<br/><br/>You can customize a template or make your own from scratch, with an immersive library at your disposal.</p>
-          <button className="certificate" onClick={() => setShowModal(true)}>
+          <p className={`expert  ${isSkillVisible ? 'fade-in' : ''}`}>You can express yourself however you want and whenever you want, for free. You can customize a template or make your own from scratch, with an immersive library at your disposal. You can express yourself however you want and whenever you free.<br/><br/>You can customize a template or make your own from scratch, with an immersive library at your disposal.</p>
+          <button className={`certificate  ${isSkillVisible  ? 'fade-in' : ''}`} onClick={() => setShowModal(true)}>
               Certificates
               <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="cert-icon">
                 <path d="M15.25 22.7502H9.25C3.82 22.7502 1.5 20.4302 1.5 15.0002V9.00024C1.5 3.57024 3.82 1.25024 9.25 1.25024H14.25C14.66 1.25024 15 1.59024 15 2.00024C15 2.41024 14.66 2.75024 14.25 2.75024H9.25C4.64 2.75024 3 4.39024 3 9.00024V15.0002C3 19.6102 4.64 21.2502 9.25 21.2502H15.25C19.86 21.2502 21.5 19.6102 21.5 15.0002V10.0002C21.5 9.59024 21.84 9.25024 22.25 9.25024C22.66 9.25024 23 9.59024 23 10.0002V15.0002C23 20.4302 20.68 22.7502 15.25 22.7502Z" fill="currentColor" />
@@ -104,7 +118,7 @@ const Skills = () => {
             </button>
         </div>
         
-        <div className="right-section">
+        <div className={`right-section ${isSkillVisible ? 'fade-in' : ''}`}>
           <div className="skill-buttons">
           <button 
               className={`skills ${activeButton === 'skills' ? 'active' : ''}`}

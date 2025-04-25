@@ -5,6 +5,9 @@
     background: $light-color;
     z-index: $z-index-low;
     padding-bottom: 8rem;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  
 
     @media (prefers-color-scheme: dark) {
         background: $dark-color;
@@ -31,6 +34,13 @@
             font-family: $font-family-primary;
             font-weight: bold;
             letter-spacing: 0px;
+            opacity: 0; 
+      transform: translateX(-100%); 
+      transition: opacity 0.5s ease, transform 1.5s ease; 
+      &.fade-in {
+        opacity: 1; 
+        transform: translateX(0); 
+      }
 
             .service-text {
                 margin-bottom: 0;
@@ -51,12 +61,24 @@
                     margin-left: 4px;
                 }
             }
+           
+        }
+        @media screen and (max-width: 868px) {
+            margin-left: 0;
         }
     }
 
     .services-list-container {
         position: relative;
         width: 100%;
+        opacity: 0; 
+        transform: translateX(100%); 
+        transition: opacity 0.5s ease, transform 1.5s ease; 
+        &.fade-in {
+          opacity: 1; 
+          transform: translateX(0); 
+        }
+       
     }
 
     .services-list {
@@ -83,6 +105,7 @@
             @media (prefers-color-scheme: dark) {
                 background: $primary-color;
             }
+          
         }
 
         .service-content {
@@ -148,6 +171,9 @@
                     @media (prefers-color-scheme: dark) {
                         color:  rgba($light-color, 0.8);
                     }
+                    @media screen and (max-width: 868px) {
+            font-size: 1.5rem;
+                    }
                 }
 
                 .service-description {
@@ -164,6 +190,10 @@
                         color:  rgba($light-color, 0.8);
                     }
                 }
+                @media screen and (max-width: 868px) {
+                  flex-direction: column;
+                  gap: 2px;
+                }
             }
 
             &::after {
@@ -174,6 +204,9 @@
                 transform: translateY(-50%) rotate(45deg);
                 font-size: 2.2rem;
                 transition: transform 0.3s ease, color 0.3s ease;
+                @media screen and (max-width: 868px) {
+            right: 0;
+                }
             }
 
             &.highlighted {
@@ -332,6 +365,9 @@
             &:hover {
              border-radius: 50%;
             }
+            @media screen and (max-width: 868px) {
+            top: 19px;
+            }
           }
       }
       @media (max-width: 768px) {
@@ -343,44 +379,11 @@
             margin-left: 0;
             max-width: 100%;
             padding: 0 1rem;
+           
           
           }
       
-          .services-list {
-            padding: 0 1rem;
           
-      
-            .service-content {
-              flex-direction: column;
-              align-items: flex-start;
-              gap: 1rem;
-              padding: 16px;
-              .service-number {
-                font-size: 1.2rem;
-                margin-right: 1rem;
-              }
-              .service-item {
-                flex-direction: column;
-                width: 100%;
-      
-                .service-title {
-                  font-size: 1.4rem;
-      min-width: unset;
-      margin-bottom: 0.5rem;
-                }
-      
-                .service-description {
-                  font-size: 1rem;
-      max-width: 100%;
-                }
-              }
-      
-              &::after {
-                font-size: 1.5rem;
-                right: 10px;
-              }
-            }
-          }
       
           .modal-content {
             padding-left: 1rem;
@@ -424,4 +427,16 @@
         }
       }
       
+}
+.fade-in {
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

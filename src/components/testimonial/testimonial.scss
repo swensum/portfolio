@@ -5,12 +5,15 @@
   width: 100%;
   overflow: hidden;
   
+  
   .block-container {
     position: relative; 
     padding-top: 3rem;
     min-height: 100vh;
     background-color:$light-color;
     z-index: 1;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
     @media (prefers-color-scheme: dark) {
         background: $dark-color;
     }
@@ -29,6 +32,13 @@
       top: 20;
       border-top-right-radius: 26px;
       border-bottom-right-radius: 26px;
+      opacity: 0; // Initial state
+      transform: translateY(100%); // Slide in from below
+      transition: opacity 0.5s ease, transform 1.5s ease; 
+      &.fade-in {
+        opacity: 1; // Fade in
+        transform: translateY(0); // Move to original position
+      }
     }
   
     .right-block {
@@ -37,6 +47,13 @@
       height: 30%;
       border-top-left-radius: 20px;
       border-bottom-left-radius: 20px; 
+      opacity: 0; // Initial state
+      transform: translateY(-100%); // Slide in from below
+      transition: opacity 0.5s ease, transform 1.5s ease; 
+      &.fade-in {
+        opacity: 1; // Fade in
+        transform: translateY(0); // Move to original position
+      }
     }
 
     .testimonials-hero {
@@ -61,6 +78,13 @@
           color: $dark-color;
           gap: 5px;
           margin-bottom: 1rem;
+          opacity: 0; // Initial state
+          transform: translateY(-100%); // Slide in from below
+          transition: opacity 0.5s ease, transform 1.5s ease; 
+          &.fade-in {
+            opacity: 1; // Fade in
+            transform: translateY(0); // Move to original position
+          }
           @media (prefers-color-scheme: dark) {
             color: $light-color;
         }
@@ -108,6 +132,13 @@
           font-family: $font-family-secondary;
           color: #cac70c;
           margin: 0;
+          opacity: 0; // Initial state
+          transform: translateY(-100%); // Slide in from below
+          transition: opacity 0.5s ease, transform 1.5s ease; 
+          &.fade-in {
+            opacity: 1; // Fade in
+            transform: translateY(0); // Move to original position
+          }
         }
       }
     }
@@ -121,6 +152,13 @@
       position: relative; 
       z-index: 2;
       overflow: hidden;
+      opacity: 0; // Initial state
+      transform: translateX(100%); // Slide in from below
+      transition: opacity 0.5s ease, transform 1.5s ease; 
+      &.fade-in {
+        opacity: 1; // Fade in
+        transform: translateX(0); // Move to original position
+      }
 
       .testimonials-wrapper {
         width: 100%;
@@ -200,7 +238,21 @@
                 margin: 0;
               }
             }
+            @media screen and (max-width: 868px) {
+              flex: 0 0 100%; // Each slide takes full width on small screens
+              max-width: 70%;
+              padding: 1.5rem;
+            }
             
+          }
+          @media screen and (max-width: 868px) {
+            flex-wrap: nowrap; 
+            
+            transform: translateX(0); // Optional: resets position
+            width: 100%;
+            gap: 9rem;
+            
+
           }
         }
       }
@@ -268,6 +320,18 @@
     
     }
   }
+  .fade-in {
+    opacity: 1;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 }
 
 @media (max-width: 868px) {
@@ -290,20 +354,6 @@
       .testimonials-grid {
         .testimonials-wrapper {
           overflow: hidden;
-
-          .testimonials-slider {
-            flex-wrap: nowrap; // Ensures horizontal layout
-            
-            transform: translateX(0); // Optional: resets position
-            width: 400px;
-            gap: 1;
-
-            .testimonial-card {
-              flex: 0 0 100%;
-              max-width: 100%;
-              padding: 1.5rem;
-            }
-          }
 
           .testimonials-navigation {
             gap: 1rem;

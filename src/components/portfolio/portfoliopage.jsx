@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import './portfolio.scss';
 
 const PortfolioPage = () => {
@@ -7,6 +7,24 @@ const PortfolioPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   
   const categories = ['All', 'Web', 'Mobile', 'Design'];
+  const [isPortVisible, setIsPortVisible] = useState(false);
+    
+  
+    useEffect(() => {
+      const handleScroll = () => {
+        const portfolioSection = document.querySelector('.portfolio-page');
+        if (portfolioSection) {
+          const rect = portfolioSection.getBoundingClientRect();
+          if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+            setIsPortVisible(true);
+          }
+        }
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
 
   const portfolioItems = [
     {
@@ -96,17 +114,17 @@ const PortfolioPage = () => {
   };
 
   return (
-    <div className="portfolio-page">
+    <div className={`portfolio-page ${isPortVisible ? 'fade-in' : ''}`}>
       <section className="portfolio-hero">
         <div className="portfolio-container">
-          <h2 className="port-heading">
+          <h2 className={`port-heading ${isPortVisible ? 'fade-in' : ''}`}>
             <span className="heading-port">My Portfolio</span>
             <span className="inline"></span>
           </h2>
         </div>
         <div className="port-word">
-          <p className="my">My Amazing Works</p>
-          <p className="defination">Most common methods for designing websites that work well on desktop is responsive and adaptive design</p>
+          <p className={`my ${isPortVisible ? 'fade-in' : ''}`}>My Amazing Works</p>
+          <p className={`defination ${isPortVisible ? 'fade-in' : ''}`}>Most common methods for designing websites that work well on desktop is responsive and adaptive design</p>
         </div>
       </section>
 
@@ -126,7 +144,7 @@ const PortfolioPage = () => {
         </div>
       </section>
 
-      <section className="portfolio-grid">
+      <section className={`portfolio-grid ${isPortVisible ? 'fade-in' : ''}`}>
         <div className="grid-container">
           {filteredItems.map((item) => (
             <div key={item.id} className={`portfolio-item ${item.width}`}>

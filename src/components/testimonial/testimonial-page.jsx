@@ -7,6 +7,32 @@ const TestimonialsPage = () => {
   const [testimonials, setTestimonials] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitionEnabled] = useState(true);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [isTestVisible, setIsTestVisible] = useState(false);
+    
+  
+    useEffect(() => {
+      const handleScroll = () => {
+        const testimonialSection = document.querySelector('.block-container');
+        if (testimonialSection) {
+          const rect = testimonialSection.getBoundingClientRect();
+          if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+            setIsTestVisible(true);
+          }
+        }
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
+
+useEffect(() => {
+  const handleResize = () => setScreenWidth(window.innerWidth);
+  window.addEventListener('resize', handleResize);
+  return () => window.removeEventListener('resize', handleResize);
+}, []);
+
  ;
  useEffect(() => {
   const loadTestimonials = async () => {
@@ -58,28 +84,29 @@ const TestimonialsPage = () => {
 
   return (
     <div className="testimonials-page">
-      <div className="block-container">
-        <div className="side-block left-block"></div>
-        <div className="side-block right-block"></div>
+      <div className={`block-container ${isTestVisible ? 'fade-in' : ''}`}>
+        <div className={`side-block left-block  ${isTestVisible ? 'fade-in' : ''}`}></div>
+        <div className={`side-block right-block  ${isTestVisible ? 'fade-in' : ''}`}></div>
 
         <section className="testimonials-hero">
           <div className="testimonials-container">
-            <h2 className="testimonials-heading">
+            <h2 className={`testimonials-heading ${isTestVisible ? 'fade-in' : ''}`}>
               <span className="heading-testimonials">Client Testimonials</span>
               <span className="inline"></span>
             </h2>
-            <p className="subtitle">What People Say About My Work</p>
+            <p className={`subtitle ${isTestVisible ? 'fade-in' : ''}`}>What People Say About My Work</p>
           </div>
         </section>
 
-        <section className="testimonials-grid">
+        <section className={`testimonials-grid ${isTestVisible ? 'fade-in' : ''}`}>
           <div className="testimonials-wrapper">
             <div
               className="testimonials-slider"
               style={{
-                transform: `translateX(-${currentIndex * (100 / 3)}%)`,
+                transform: `translateX(-${currentIndex * (screenWidth <= 868 ? 100 : 100 / 3)}%)`,
                 transition: transitionEnabled ? 'transform 0.5s ease-in-out' : 'none'
               }}
+              
             >
               {extendedTestimonials.map((testimonial, index) => (
                 <div key={`${testimonial.id}-${index}`} className="testimonial-card">

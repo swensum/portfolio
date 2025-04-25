@@ -9,6 +9,8 @@
   z-index: $z-index-low;
   background-color: $bg-primary; 
   padding-bottom: 4rem;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
 
 
   .portfolio-hero {
@@ -37,6 +39,13 @@
       width: 100%;
       gap: 1px;
       margin-bottom: 0;
+      opacity: 0; // Initial state
+      transform: translateY(-100%); // Slide in from below
+      transition: opacity 0.5s ease, transform 1.5s ease; 
+      &.fade-in {
+        opacity: 1; // Fade in
+        transform: translateY(0); // Move to original position
+      }
       
       .heading-port {
         transition: color 0.3s ease;
@@ -91,6 +100,13 @@
       color: #cac70c;
       margin: 0 0 1rem 0;
       line-height: 1.2;
+      opacity: 0; // Initial state
+      transform: translateY(-100%); // Slide in from below
+      transition: opacity 0.5s ease, transform 1.5s ease; 
+      &.fade-in {
+        opacity: 1; // Fade in
+        transform: translateY(0); // Move to original position
+      }
     }
     
     .defination {
@@ -100,9 +116,16 @@
       color: $light-color; // Changed for better contrast
       margin: 0;
       line-height: 1.6;
+      opacity: 0; // Initial state
+      transform: translateX(-100%); // Slide in from below
+      transition: opacity 0.5s ease, transform 1.5s ease; 
+      &.fade-in {
+        opacity: 1; // Fade in
+        transform: translateX(0); // Move to original position
+      }
     }
   }
-  // Add this to your existing portfolio.scss file
+ 
 .portfolio-categories {
     width: 100%;
     display: flex;
@@ -168,7 +191,13 @@
   .portfolio-grid {
     width: 100%;
     padding: 3rem 1rem;
-    
+    opacity: 0; // Initial state
+    transform: translateY(100%); // Slide in from below
+    transition: opacity 0.5s ease, transform 1.5s ease; 
+    &.fade-in {
+      opacity: 1; // Fade in
+      transform: translateY(0); // Move to original position
+    }
     .grid-container {
       width: 100%;
       max-width: 1000px;
@@ -289,6 +318,9 @@
         }
       }
     }
+    @media screen and (max-width: 868px) {
+      width: 50%;      
+    }
   }
   .portfolio-modal {
     position: fixed;
@@ -345,6 +377,10 @@
         &:hover {
           color: $light-color;
           border-radius: 50%;
+        }
+        @media screen and (max-width: 868px) {
+            right: 15px;
+            top: 25px;
         }
       }
       
@@ -474,3 +510,15 @@
     }
   }
 }  
+.fade-in {
+  opacity: 1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

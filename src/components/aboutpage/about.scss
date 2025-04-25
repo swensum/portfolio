@@ -5,6 +5,24 @@
     justify-content: center;
   z-index:  $z-index-low;
   background-color: $primary-color;
+  .about-section {
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  }
+  
+  .fade-in {
+    opacity: 1;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
  .about-container {
     display: flex;
     align-items: flex-start;
@@ -15,17 +33,30 @@
   
 
     .about-image {
-      flex: 0 0 600px; // Adjust width as needed
-      
+      flex: 0 0 600px; 
+      opacity: 0; // Initial state
+      transform: translateX(-100%); // Slide in from below
+      transition: opacity 0.5s ease, transform 1.5s ease; 
+      &.fade-in {
+        opacity: 1; // Fade in
+        transform: translateY(0); // Move to original position
+      }
       img {
         width: 100%;
         height: auto;
         border-radius: 8px; // Optional: adds rounded corners
       }
     }
-
+   
     .about-content {
       flex: 1;
+      opacity: 0; // Initial state
+      transform: translateX(100%); // Slide in from below
+      transition: opacity 0.5s ease, transform 1.5s ease; 
+      &.fade-in {
+        opacity: 1; // Fade in
+        transform: translateY(0); // Move to original position
+      }
       
       .heading {
         display: flex;
@@ -172,6 +203,7 @@
        
       }
     }
+    
   }
 }
 
@@ -179,7 +211,9 @@
 @media (max-width: 768px) {
   .about-container {
     flex-direction: column !important;
-    
+    .about-content{
+      margin-left: 20px;
+    }
     .about-image {
       margin-bottom: 1.5rem;
       flex: 0 0 auto !important;

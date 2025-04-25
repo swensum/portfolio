@@ -10,7 +10,7 @@ const ContactPage = () => {
     email: '',
     message: ''
   });
-  const [testimonials, setTestimonials] = useState([]);
+  const [ setTestimonials] = useState([]);
   const officeLocation = { lat: 40.7128, lng: -74.0060 };
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -19,7 +19,24 @@ const ContactPage = () => {
       [name]: value
     }));
   };
+const [isContactVisible, setIsContactVisible] = useState(false);
+  
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const contactSection = document.querySelector('.contact-page');
+      if (contactSection) {
+        const rect = contactSection.getBoundingClientRect();
+        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+          setIsContactVisible(true);
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
   
@@ -74,7 +91,7 @@ const ContactPage = () => {
 
 
   return (
-    <div className="contact-page">
+    <div className={`contact-page  ${isContactVisible ? 'fade-in' : ''}`}>
       <div className="contact-container">
         <div className="bottom-block bottom-left"></div>
         <div className="bottom-block bottom-right"></div>
@@ -82,12 +99,12 @@ const ContactPage = () => {
           <Map location={officeLocation} />
         </div>
         <section className="contact-section">
-          <div className="contact-header">
+          <div className={`contact-header  ${isContactVisible ? 'fade-in' : ''}`}>
             <h2>Don't be shy</h2>
             <h1>Drop Me a Line</h1>
           </div>
           
-          <div className="contact-content">
+          <div className={`contact-content  ${isContactVisible ? 'fade-in' : ''}`}>
             <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-group">
                
@@ -128,7 +145,7 @@ const ContactPage = () => {
               <button type="submit" className="submit-btn">Submit Message</button>
             </form>
             
-            <div className="contact-info">
+            <div className={`contact-info  ${isContactVisible ? 'fade-in' : ''}`}>
               <div className="info-item">
                 <div className="info-icon">
                   <FaMapMarkerAlt />

@@ -1,24 +1,50 @@
 @import '../styles/theme';
-body, html {
+
+body,
+html {
   margin: 0;
   padding: 0;
   width: 100%;
   overflow-x: hidden; // Prevent horizontal scroll
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 
 .landing-page {
   margin-top: 13%;
-  width: 100vw; 
+  width: 100vw;
   min-height: 100vh;
-  z-index:  $z-index-low;
+  z-index: $z-index-low;
+  animation: fadeIn 1s ease-out;
 
   .hero-content {
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 120px;
-   
+    opacity: 0;
+    animation: slideUpFadeIn 1s ease-out 0.3s forwards;
+
+    @keyframes slideUpFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     .hero-image {
       position: relative;
@@ -29,7 +55,7 @@ body, html {
       overflow: visible;
       box-shadow: $shadow-lg;
       z-index: $z-index-medium;
-    
+
       // Center point for rotation
       &::before {
         content: '';
@@ -42,7 +68,7 @@ body, html {
         background: transparent;
         transform: translate(-50%, -50%);
       }
-    
+
       .tech-logo {
         position: absolute;
         width: 70px;
@@ -52,54 +78,56 @@ body, html {
         z-index: $z-index-medium + 1;
         animation: orbit 15s linear infinite;
         transform-origin: center;
-        
+
         // Initial positions (equally spaced around circle)
-        &:nth-child(1) { // Top
+        &:nth-child(1) {
+          // Top
           top: calc(50% - 80px);
           left: 50%;
           animation-delay: 0s;
         }
-        &:nth-child(2) { // Right
+
+        &:nth-child(2) {
+          // Right
           top: 50%;
           left: calc(50% + 80px);
           animation-delay: -3.75s;
         }
-        &:nth-child(3) { // Bottom
+
+        &:nth-child(3) {
+          // Bottom
           top: calc(50% + 80px);
           left: 50%;
           animation-delay: -7.5s;
         }
-        &:nth-child(4) { // Left
+
+        &:nth-child(4) {
+          // Left
           top: 50%;
           left: calc(50% - 80px);
           animation-delay: -11.25s;
         }
-    
+
         &:hover {
           transform: scale(1.2);
           filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
           animation-play-state: paused;
         }
       }
-    
+
       @keyframes orbit {
         0% {
-          transform: 
-            translate(-50%, -50%)
-            rotate(0deg) 
-            translateX(150px) 
-            rotate(0deg);
+          transform:
+            translate(-50%, -50%) rotate(0deg) translateX(150px) rotate(0deg);
         }
+
         100% {
-          transform: 
-            translate(-50%, -50%)
-            rotate(360deg) 
-            translateX(150px) 
-            rotate(-360deg);
+          transform:
+            translate(-50%, -50%) rotate(360deg) translateX(150px) rotate(-360deg);
         }
       }
-    
-    
+
+
       .hero-img {
         width: 100%;
         height: 100%;
@@ -109,316 +137,395 @@ body, html {
         position: relative;
         z-index: $z-index-medium;
       }
-    
+
       &:hover .hero-img {
         transform: scale(1.03);
       }
     }
-    
-   
-    
-    
-  
-  .hero-section {
-    min-height: calc(80vh - 80px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    padding: 0 $spacing-lg;
-margin-bottom: 60px;
-    max-width: 800px;
-    
-  
-    .hello{
-      font-size: clamp(1rem, 2vw, 1.7rem);
-      font-family: $font-family-secondary;
-      padding-left: 5px;
-      margin-bottom: 0rem; 
-      color:$primary-color;
-      @media (prefers-color-scheme: dark) {
-        color: $secondary-color; 
-      }
-    }
 
-    h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      margin-top: 0;
-      margin-bottom: $spacing-md;
-      position: relative;
-      z-index: 1;
-      font-family: $font-family-secondary;
-      line-height: 1.2;
-      text-align: left;
 
-      span[role="img"] {
-        display: inline-block;
-        margin-left: 10px;
-        animation: wave 2s infinite;
-        transform-origin: 70% 70%;
-      }
-    }
-
-    .dash-line {
-      width: 100px;
-      height: 1.5px;
-      background-color: $primary-color;
-      margin: $spacing-md 0;
-      @media (prefers-color-scheme: dark) {
-        background-color: $secondary-color; // Black background
-      }
-    }
-
-    .skills-container {
-      height: 10px; 
-      margin-bottom: $spacing-md;
-      position: relative;
-      display: flex;
-      gap: 20px;
+    @media screen and (max-width: 868px) {
+      flex-direction: column; // Stack content vertically
       align-items: center;
-    }
+      gap: 10px; // Reduce spacing for smaller screen
 
-    .changing-skill {
-      font-size: clamp(1.2rem, 2vw, 1.8rem);
-      color: $primary-color;
-      
-     
-     
+      .hero-image {
+
+        margin-top: 0;
+        order: 2; // Ensure it appears below the content
+        width: 100%;
+        max-width: 600px;
+        max-height: 600px;
+        margin-bottom: 2rem;
+        opacity: 0;
+  animation: fadeInWithZoom 1s ease-out 1.5s forwards;
+  @keyframes fadeInWithZoom {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
       opacity: 1;
-      animation: fadeInOut 3s infinite;
-      @media (prefers-color-scheme: dark) {
-        color: $secondary-color; // Black background
+      transform: scale(1);
+    }
+  }
+
+        .tech-logo {
+          display: none; // Disable orbiting logos
+        }
       }
+
     }
 
-    .tagline {
-      font-size: clamp(1rem, 1.7vw, 1.2rem);
-      margin-bottom: $spacing-xl;
-      font-family: $font-family-primary;
-      max-width: 550px;
-      position: relative;
-      z-index: 1;
-      text-align: left;
-    }
-    .buttons {
+    .hero-section {
+      min-height: calc(80vh - 80px);
       display: flex;
-      align-items: center;
-      gap: 50px; // Adjust this value to control the space between buttons
-      
-      .hello-button {
-        padding: 20px 23px;
-        background-color: $primary-color;
-        color: $light-color;
-        font-family: $font-family-primary;
-        font-size: 1.2rem;
-        font-weight: bold;
-        cursor: pointer;
-        border: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        transition: $transition-normal;
-        outline: none;
-        border-radius: 16px;
-        margin-right: 0; // Remove the large right margin
-        
-        .button-arrow {
-          width: 20px;
-          height: 20px;
-          transition: $transition-normal;
-          color: currentColor;
-        }
-    
-        &:hover {
-          background-color: $dark-color;
-          color: $light-color;
-          
-          .button-arrow {
-            transform: translateX(3px);
-          }
-          
-          @media (prefers-color-scheme: dark) {
-            color: $text-light;
-          }
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 0 $spacing-lg;
+      margin-bottom: 60px;
+      max-width: 800px;
+
+
+      .hello {
+        font-size: clamp(1rem, 2vw, 1.7rem);
+        font-family: $font-family-secondary;
+        padding-left: 5px;
+        margin-bottom: 0rem;
+        color: $primary-color;
+        opacity: 0;
+        animation: fadeIn 0.5s ease-out 0.5s forwards;
+
+        @media (prefers-color-scheme: dark) {
+          color: $secondary-color;
         }
       }
-      
-      .work {
-        color: $text-light;
-        text-decoration: none;
-        transition: $transition-normal;
-        padding: 0; // Remove padding that might create background
+
+      h1 {
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-top: 0;
+        margin-bottom: $spacing-md;
         position: relative;
-        font-size: 1.2rem;
-        font-weight: bold;
-        cursor: pointer;
-        background: none; // Explicitly remove background
-        border: none; 
-        outline: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px; 
-        .work-arrow {
-          width: 16px;
-          height: 16px;
-          transition: $transition-normal;
-          color: currentColor;
+        z-index: 1;
+        font-family: $font-family-secondary;
+        line-height: 1.2;
+        text-align: left;
+        opacity: 0;
+        animation: fadeIn 0.5s ease-out 0.7s forwards;
+
+        span[role="img"] {
+          display: inline-block;
+          margin-left: 10px;
+          animation: wave 2s infinite;
+          transform-origin: 70% 70%;
         }
-        &:hover {
-          color: $primary-color;
-          @media (prefers-color-scheme: dark) {
-            color: $secondary-color; // Black background
-          }
-          .work-arrow {
-            transform: translateX(3px) rotate(45deg);
-            
-          }
-    
-          &::after {
-            width: 100%;
-          }
-        }
-    
-        &::after {
-          content: '';
-          position: absolute;
-          bottom: -5px; // Adjust underline position
-          left: 0;
-          width: 0;
-          height: 2px;
-          background-color: $primary-color;
-          transition: $transition-normal;
-          @media (prefers-color-scheme: dark) {
-            background-color: $secondary-color; // Black background
-          }
-        }
-       
       }
 
-    }
-    .social{
-      padding-top: 80px;
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      font-family: $font-family-primary;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      .social-icons {
+      .dash-line {
+        width: 100px;
+        height: 1.5px;
+        background-color: $primary-color;
+        margin: $spacing-md 0;
+
+        @media (prefers-color-scheme: dark) {
+          background-color: $secondary-color; // Black background
+        }
+      }
+
+      .skills-container {
+        height: 10px;
+        margin-bottom: $spacing-md;
+        position: relative;
         display: flex;
-        gap: 12px;
-        
-        a {
+        gap: 20px;
+        align-items: center;
+        opacity: 0;
+        animation: fadeIn 0.5s ease-out 0.9s forwards;
+      }
+
+      .changing-skill {
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+        color: $primary-color;
+
+
+
+        opacity: 1;
+        animation: fadeInOut 3s infinite;
+
+        @media (prefers-color-scheme: dark) {
+          color: $secondary-color; // Black background
+        }
+      }
+
+      .tagline {
+        font-size: clamp(1rem, 1.7vw, 1.2rem);
+        margin-bottom: $spacing-xl;
+        font-family: $font-family-primary;
+        max-width: 550px;
+        position: relative;
+        z-index: 1;
+        text-align: left;
+        opacity: 0;
+        animation: fadeIn 0.5s ease-out 1.1s forwards;
+      }
+
+      .buttons {
+        display: flex;
+        align-items: center;
+        gap: 50px; 
+        opacity: 0;
+  animation: fadeIn 0.5s ease-out 1.3s forwards;
+
+        .hello-button {
+          padding: 20px 23px;
+          background-color: $primary-color;
+          color: $light-color;
+          font-family: $font-family-primary;
+          font-size: 1.2rem;
+          font-weight: bold;
+          cursor: pointer;
+          border: none;
           display: inline-flex;
           align-items: center;
-          justify-content: center;
-          width: 45px;
-          height: 45px;
-          border-radius: 50%;
-          transition: all $transition-normal ease;
-          background: rgba(0, 0, 0, 0.1);
-          
-          @media (prefers-color-scheme: dark) {
-            background: rgba(255, 255, 255, 0.1);
+          gap: 10px;
+          transition: $transition-normal;
+          outline: none;
+          border-radius: 16px;
+          margin-right: 0; // Remove the large right margin
+
+          .button-arrow {
+            width: 20px;
+            height: 20px;
+            transition: $transition-normal;
+            color: currentColor;
           }
-          
-          // GitHub specific styles
-          &:first-child {
-            .social-icon {
-              color: #817e7e; // GitHub brand color
-            }
-            
-            &:hover {
-              background: #333;
-              .social-icon {
-                color: white;
-              }
-            }
-          }
-          
-          // LinkedIn specific styles
-          &:nth-child(2) {
-            .social-icon {
-              color: #0077B5; // LinkedIn brand color
-            }
-            
-            &:hover {
-              background: #0077B5;
-              .social-icon {
-                color: white;
-              }
-            }
-          }
-          
-          // Facebook specific styles
-          &:nth-child(3) {
-            .social-icon {
-              color: #4267B2; // Facebook brand color
-            }
-            
-            &:hover {
-              background: #4267B2;
-              .social-icon {
-                color: white;
-              }
-            }
-          }
-          
-          // WhatsApp specific styles
-          &:nth-child(4) {
-            .social-icon {
-              color: #25D366; // WhatsApp brand color
-            }
-            
-            &:hover {
-              background: #25D366;
-              .social-icon {
-                color: white;
-              }
-            }
-          }
-          
+
           &:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-          }
-          
-          &:focus-visible {
-            outline: 2px solid $primary-color;
-            outline-offset: 2px;
+            background-color: $dark-color;
+            color: $light-color;
+
+            .button-arrow {
+              transform: translateX(3px);
+            }
+
+            @media (prefers-color-scheme: dark) {
+              color: $text-light;
+            }
           }
         }
-        
-        .social-icon {
+
+        .work {
+          color: $text-light;
+          text-decoration: none;
+          transition: $transition-normal;
+          padding: 0; // Remove padding that might create background
+          position: relative;
           font-size: 1.2rem;
-          transition: $transition-fast;
+          font-weight: bold;
+          cursor: pointer;
+          background: none; // Explicitly remove background
+          border: none;
+          outline: none;
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+
+          .work-arrow {
+            width: 16px;
+            height: 16px;
+            transition: $transition-normal;
+            color: currentColor;
+          }
+
+          &:hover {
+            color: $primary-color;
+
+            @media (prefers-color-scheme: dark) {
+              color: $secondary-color; // Black background
+            }
+
+            .work-arrow {
+              transform: translateX(3px) rotate(45deg);
+
+            }
+
+            &::after {
+              width: 100%;
+            }
+          }
+
+          &::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; // Adjust underline position
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: $primary-color;
+            transition: $transition-normal;
+
+            @media (prefers-color-scheme: dark) {
+              background-color: $secondary-color; // Black background
+            }
+          }
+
         }
+
       }
-    
-      
+
+      .social {
+        padding-top: 80px;
+        font-size: clamp(1rem, 2vw, 1.3rem);
+        font-family: $font-family-primary;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        opacity: 0;
+  animation: fadeIn 0.5s ease-out 1.5s forwards;
+
+        .social-icons {
+          display: flex;
+          gap: 12px;
+
+          a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            transition: all $transition-normal ease;
+            background: rgba(0, 0, 0, 0.1);
+
+            @media (prefers-color-scheme: dark) {
+              background: rgba(255, 255, 255, 0.1);
+            }
+
+            // GitHub specific styles
+            &:first-child {
+              .social-icon {
+                color: #817e7e; // GitHub brand color
+              }
+
+              &:hover {
+                background: #333;
+
+                .social-icon {
+                  color: white;
+                }
+              }
+            }
+
+            // LinkedIn specific styles
+            &:nth-child(2) {
+              .social-icon {
+                color: #0077B5; // LinkedIn brand color
+              }
+
+              &:hover {
+                background: #0077B5;
+
+                .social-icon {
+                  color: white;
+                }
+              }
+            }
+
+            // Facebook specific styles
+            &:nth-child(3) {
+              .social-icon {
+                color: #4267B2; // Facebook brand color
+              }
+
+              &:hover {
+                background: #4267B2;
+
+                .social-icon {
+                  color: white;
+                }
+              }
+            }
+
+            // WhatsApp specific styles
+            &:nth-child(4) {
+              .social-icon {
+                color: #25D366; // WhatsApp brand color
+              }
+
+              &:hover {
+                background: #25D366;
+
+                .social-icon {
+                  color: white;
+                }
+              }
+            }
+
+            &:hover {
+              transform: translateY(-3px) scale(1.05);
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+
+            &:focus-visible {
+              outline: 2px solid $primary-color;
+              outline-offset: 2px;
+            }
+          }
+
+          .social-icon {
+            font-size: 1.2rem;
+            transition: $transition-fast;
+          }
+        }
+
+
+      }
     }
+  }
+  
+  
 }
-}
-}
+
 @keyframes wave {
   0% { transform: rotate(0deg); }
-  10% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  30% { transform: rotate(14deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
-  60% { transform: rotate(0deg); }
+  15% { transform: rotate(14deg); }
+  30% { transform: rotate(-8deg); }
+  40% { transform: rotate(14deg); }
+  50% { transform: rotate(-4deg); }
+  60% { transform: rotate(10deg); }
+  70% { transform: rotate(0deg); }
   100% { transform: rotate(0deg); }
 }
 
+
 @keyframes fadeInOut {
-  0% { opacity: 0; transform: translateY(20px); }
-  10% { opacity: 1; transform: translateY(0); }
-  90% { opacity: 1; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(-20px); }
-}
-@media (max-width: 768px) {
-  .landing-page{
-    padding-top: 5rem;
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
   }
+
+  10% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-page {
+    padding-top: 5rem;
+    flex-direction: column;
+  }
+
 }

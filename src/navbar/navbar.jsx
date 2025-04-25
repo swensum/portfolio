@@ -7,29 +7,29 @@ const NavBar = ({ activeSection = 'home' }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    // Scroll to top when the page is refreshed or initially loaded
+    
     window.scrollTo(0, 0);
-  }, []); // Empty dependency array ensures this runs only once on mount
+  }, []); 
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const handleHomeClick = (e) => {
-    // Always close mobile menu
+   
     setIsMobileMenuOpen(false);
 
-    // Prevent default anchor behavior
+   
     e.preventDefault();
 
-    // Scroll to top without refreshing the page
+   
     window.scrollTo(0, 0);
 
-    // Update the URL hash without triggering page reload
+  
     if (window.location.hash !== '#home') {
       window.history.pushState(null, '', '#home');
     } else {
-      // Force a page refresh when we're already at the home section
+    
       window.location.reload();
     }
   };

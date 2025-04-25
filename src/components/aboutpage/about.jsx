@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './about.scss';
-import port from '/images/port.jpg';
+import port from '/images/sumit.jpg';
 
 const About = () => {
+  const [isAboutVisible, setIsAboutVisible] = useState(false);
+  
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const aboutSection = document.querySelector('.about-section');
+      if (aboutSection) {
+        const rect = aboutSection.getBoundingClientRect();
+        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+          setIsAboutVisible(true);
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const handleViewCV = () => {
     // Open CV in a new tab for viewing
     window.open('/files/sumit new.pdf', '_blank');
@@ -20,13 +39,13 @@ const About = () => {
 
   return (
     <div className="about-page">
-      <section className="about-section">
+      <section className={`about-section ${isAboutVisible ? 'fade-in' : ''}`}>
         <div className="about-container">
-          <div className="about-image">
+          <div className={`about-image ${isAboutVisible ? 'fade-in' : ''}`}>
             <img src={port} alt="Profile" />
           </div>
-          <div className="about-content">
-            <h2 className="heading">
+          <div className={`about-content ${isAboutVisible ? 'fade-in' : ''}`}>
+            <h2 className="heading ">
               <span className="heading-text">About Me</span>
               <span className="inline-underline"></span>
             </h2>

@@ -1,10 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import './service.scss';
 
 const ServicePage = () => {
   const [hoverIndex, setHoverIndex] = useState(0);
   const [selectedService, setSelectedService] = useState(null);
+  const [isServiceVisible, setIsServiceVisible] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const serviceSection = document.querySelector('.service-page');
+      if (serviceSection) {
+        const rect = serviceSection.getBoundingClientRect();
+        if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+          setIsServiceVisible(true);
+        }
+      }
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
 
 
   const services = [
@@ -79,10 +97,10 @@ const ServicePage = () => {
   };
 
   return (
-    <div className="service-page">
+    <div className={`service-page ${isServiceVisible ? 'fade-in' : ''}`}>
       <section className="service-hero">
         <div className="service-container">
-          <h1 className="service-heading">
+          <h1 className={`service-heading ${isServiceVisible ? 'fade-in' : ''}`}>
             <span className="service-text">
               Services <br />
               <span className="service-line">I Provide<span className="service-underline"></span></span>
@@ -91,7 +109,7 @@ const ServicePage = () => {
         </div>
       </section>
 
-      <section className="services-list-container" onMouseLeave={() => setHoverIndex(0)}>
+      <section className={`services-list-container ${isServiceVisible ? 'fade-in' : ''}`} onMouseLeave={() => setHoverIndex(0)}>
   <div 
     className="services-list"
     style={{ '--highlight-index': hoverIndex }}

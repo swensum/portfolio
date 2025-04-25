@@ -1,11 +1,29 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin, faFacebook, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
 import './footer.scss';
 
 const Footer = () => {
+  const [isFooterVisible, setIsFooterVisible] = useState(false);
+    
+  
+    useEffect(() => {
+      const handleScroll = () => {
+        const footerSection = document.querySelector('.about-section');
+        if (footerSection) {
+          const rect = footerSection.getBoundingClientRect();
+          if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+            setIsFooterVisible(true);
+          }
+        }
+      };
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, []);
   return (
-    <footer className="portfolio-footer">
+    <footer className={`portfolio-footer ${isFooterVisible ? 'fade-in' : ''}`}>
       <div className="footer-content">
         <div className="footer-social">
           <a href="https://github.com/swensum" target="_blank" rel="noopener noreferrer">
