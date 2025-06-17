@@ -24,12 +24,12 @@ const About = () => {
 
   const handleViewCV = () => {
     // Open CV in a new tab for viewing
-    window.open('/files/sumit new.pdf', '_blank');
+    window.open('/files/sumit.pdf', '_blank');
     
     // Optional: Trigger download after a delay (comment out if not needed)
     setTimeout(() => {
       const link = document.createElement('a');
-      link.href = '/files/sumit new.pdf';
+      link.href = '/files/sumit.pdf';
       link.download = 'Sumit-Shrestha-CV.pdf';
       document.body.appendChild(link);
       link.click();
