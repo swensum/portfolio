@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaReact, FaAndroid } from 'react-icons/fa';
+import { FaReact, FaAndroid, FaDatabase } from 'react-icons/fa';
 import { SiFlutter, SiFirebase, SiJavascript } from 'react-icons/si';
 import { FaJava } from 'react-icons/fa'; // Java icon is in the FA package
 
@@ -37,9 +37,9 @@ const SkillsContent = ({ percentages }) => (
     </div>
     <div className="skill-icon">
       <div className="icon-circle">
-        <FaJava className="icon" /> {/* Changed from SiJava to FaJava */}
+        <FaDatabase className="icon" />
       </div>
-      <span>Java({percentages.java}%)</span>
+      <span>SQL({percentages.sql}%)</span>
     </div>
   </div>
 );

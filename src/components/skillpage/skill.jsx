@@ -21,7 +21,7 @@ const Skills = () => {
     android: 0,
     firebase: 0,
     javascript: 0,
-    sass: 0
+    sql: 0
   });
   const [counters, setCounters] = useState({
     training: 0,
@@ -67,7 +67,7 @@ const Skills = () => {
           android: Math.floor(progress * targetPercentages.android),
           firebase: Math.floor(progress * targetPercentages.firebase),
           javascript: Math.floor(progress * targetPercentages.javascript),
-          java: Math.floor(progress * targetPercentages.java)
+          sql: Math.floor(progress * targetPercentages.sql),
         });
         setCounters({
           training: Math.floor(progress * targetCounters.training),

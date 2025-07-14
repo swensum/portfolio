@@ -40,8 +40,8 @@ export const certificates  = [
     flutter: 85,
     android: 80,
     firebase: 75,
-    javascript: 80,
-    java: 50
+    javascript: 60,
+    sql: 50
   };
   export const targetCounters = {
     training: 5,
