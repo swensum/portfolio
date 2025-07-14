@@ -172,7 +172,6 @@
     }
   }
   
-  // Make sure to add media queries for responsiveness
   @media (max-width: 768px) {
     .portfolio-categories {
       .categories-container {
@@ -191,46 +190,49 @@
   .portfolio-grid {
     width: 100%;
     padding: 3rem 1rem;
-    opacity: 0; // Initial state
-    transform: translateY(100%); // Slide in from below
-    transition: opacity 0.5s ease, transform 1.5s ease; 
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.5s ease, transform 1.5s ease;
+    
     &.fade-in {
-      opacity: 1; // Fade in
-      transform: translateY(0); // Move to original position
+      opacity: 1;
+      transform: translateY(0);
     }
+
     .grid-container {
       width: 100%;
       max-width: 1000px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      grid-auto-rows: 200px;
+      display: flex;
+      flex-wrap: wrap;
       gap: 20px;
-  
+      justify-content: center;
+
       .portfolio-item {
         position: relative;
         overflow: hidden;
         border-radius: 8px;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        width: 100%;
-        height: 100%;
-        display: flex;
-        &.wide {
-          grid-column: span 2;
-        }
-  
+        
+        // Base size for square items
+        width: 270px;
+        height: 250px;
+        
+        // Tall items
         &.tall {
-          grid-row: span 2;
+          height: 520px; // 250px * 2 + 20px gap
         }
-  
+        
+        // Wide items (if you want them)
+       
+
         .item-image {
           position: relative;
           width: 100%;
           height: 100%;
           display: block;
-  
+
           img {
-            padding: 1rem;
             width: 100%;
             height: 100%;
             object-fit:fill;
@@ -353,6 +355,7 @@
       border-radius: 18px;
       overflow: hidden;
       display: flex;
+  align-items: flex-start;
       z-index: 1;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       
@@ -385,17 +388,20 @@
       }
       
       .video-container {
+        flex: 0 0 auto; 
         width: 100%;
         max-width: 400px;
         
         border-radius: 18px;
         background: #000;
+        margin-top: 60px;
         
         video {
           width: 100%;
-          height: 500px;
-          display: block;
-          outline: none;
+          height: auto;
+          max-height: 450px;
+        object-fit: contain;
+    border-radius: 12px;
         }
       }
       
@@ -430,10 +436,26 @@
         }
         
         .description {
-          margin-bottom: 25px;
+          margin-bottom: 0px;
           line-height: 1.6;
           color: $light-color;
         }
+        .feature-points {
+          margin-bottom: 0px;
+          h4 {
+            font-size: 16px;
+           
+          }
+          ul {
+            padding-left: 20px;
+            list-style-type: disc;
+      
+            li {
+              margin-bottom: 6px;
+              line-height: 1.5;
+            }
+          }
+        }      
         
         .technologies {
           h4 {
@@ -480,7 +502,8 @@
       .video-container {
         max-width: 100%;
         height: auto;
-        margin-bottom: 1rem;
+        margin-top: 0;
+        
   
         video {
           height: auto;

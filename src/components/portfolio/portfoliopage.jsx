@@ -34,44 +34,71 @@ const PortfolioPage = () => {
       image: '/images/portfolio/mobile.jpg',
       video: '/videos/mobile.mp4', 
       width: 'tall',
-      description: 'I have developed a modern and user-friendly restaurant Android application using Flutter and Appwrite, with development handled in Visual Studio Code. The app allows users to browse a dynamic food menu with images and detailed descriptions, add items to a cart, and place orders with ease.It features secure user authentication and a responsive design that adapts smoothly across Android devices.The backend is powered by Appwrite, ensuring efficient data management and secure operations.This project highlights my skills in cross-platform mobile development, backend integration, and delivering a seamless customer experience in the food service domain. ',
-      technologies: ['Flutter', 'Dart', 'Appwrite', 'VS Code'],
-      date: 'March 2023'
+      description: 'I have developed a modern and user-friendly restaurant Android application using Flutter Framework . where i have:',
+      points: [
+        'Built client-side app for customers to browse menu, place orders, and view order history in real-time.',
+        'Created admin dashboard for restaurant staff to manage orders, update menu items, and send push notifications.',
+        'Integrated Google Maps API to enable location-based services map directions, user locations etc.',
+        'Implemented real-time push notifications on order status updates.',
+        'Focused on responsive UI/UX using Flutters flexible widget system for a smooth experience on various Android devices.'
+      ],
+      technologies: ['Flutter', 'Dart', 'Supabase','Firebase PUSH Notification','Google Map API', 'VS Code'],
+      date: ' January 2025'
     },
+   
     {
       id: 2,
-      title: 'Education consultancy Website',
-      category: 'Web',
-      image: '/images/portfolio/felix.png',
-      video: '/videos/Untitled1.mov', 
-      width: 'square',
-      description: 'I have Developed the frontend of an education consultancy website using React and Vite, focused on providing students with information about study programs, admission guidance, and visa assistance. The site features a modern, responsive design with dedicated sections for services, partner universities, testimonials, and contact forms to enhance user engagement and accessibility.',
-      technologies: ['React Native', 'Firebase', 'Redux'],
-      client: 'National Bank',
-      date: 'January 2023'
-    },
-    {
-      id: 3,
       title: 'A health monitoring app ',
       category: 'Mobile',
       image: '/images/portfolio/health.jpg',
       video: '/videos/health.mp4', 
       width: 'tall',
-      description: ' I have Developed a comprehensive health monitoring Android app using various programming language, tested and optimized for  real Android devices. The app features a real-time step counter integrated with a calorie burn meter to help users track their daily activity levels. It also includes a BMI calculator for assessing body health, personalized diet suggestions based on user data, and a diet monitoring system to help users stay on track with their nutrition goals. With a clean, intuitive interface and accurate health tracking, the app empowers users to maintain a healthier lifestyle through smart and easy-to-use tools.',
+      description: ' I have Developed a comprehensive health monitoring Android app.',
+      points: [
+        'Implemented a real-time step counter using the Android Sensor API, enabling users to track their daily physical activity.',
+        'Designed and integrated a BMI calculator, allowing users to input height and weight and get personalized results.',
+        'Built a diet monitoring and suggestion module, offering tailored food recommendations based on BMI and user goals (e.g., weight loss, gain, or maintenance).',
+        'Implemented real-time push notifications on order status updates.',
+      ],
       technologies: ['Java', 'XML', 'Kotlin','Android Studio'],
       client: 'Tech Solutions Inc.',
       date: 'November 2022'
     },
     {
-      id: 4,
-      title: 'Yet To Be Come ',
-      category: 'Design',
-      image: '/images/portfolio/download.jpeg',
+      id: 3,
+      title: 'To-do Mobile application ',
+      category: 'Mobile',
+      image: '/images/portfolio/todo.jpeg',
+      video: '/videos/todo.mp4', 
       width: 'tall',
-      description: 'Yet to be come.',
-      technologies: ['null', 'null', 'null'],
-      client: 'HealthFit',
-      date: 'September 2022'
+      description: 'I have Created a simple and efficient To-Do application.',
+      points: [
+        'Built clean and intuitive UI usinyg Flutter to allow users to add, edit, delete, and categorize tasks efficientl.',
+        'Integrated SQLite for lightweight, offline-first local database to persist task data across sessions.',
+        'Implemented Flutter Local Notifications to remind users of scheduled tasks and dailgoals.',
+        'Enabled users to set due dates, mark tasks as complete, and filter views based on task status or priority.',
+        'Implemented the charts to visualize task completion rates, daily/weekly productivity, and category distribution.'
+      ],
+      technologies: ['flutter', 'Dart','SQLite', 'VS code '],
+      client: 'Creative Network',
+      date: 'May 2022'
+    },
+    {
+      id: 4,
+      title: 'Education consultancy Website',
+      category: 'Web',
+      image: '/images/portfolio/felix.png',
+      video: '/videos/Untitled1.mov', 
+      width: 'square',
+      description: 'I have Developed the frontend of an education consultancy website.',
+      points: [
+        'Built fast performance and modular component-based architecture.',
+        'Created reusable components such as navbars, service cards, testimonial sliders, and contact forms.',
+        'Integrated smooth scroll, hover animations, and interactive elements for engaging user experience.',
+      ],
+      technologies: ['React', 'SASS', 'React Router DOM'],
+      client: 'National Bank',
+      date: 'January 2023'
     },
     {
       id: 5,
@@ -80,22 +107,26 @@ const PortfolioPage = () => {
       image: '/images/portfolio/soltech.jpg',
       width: 'square',
       video: '/videos/Untitled.mov', 
-      description: 'I Designed the frontend of a web application using React and Vite, aimed at helping users easily create and customize their own eCommerce websites. The platform offers intuitive tools and components that allow for flexible layout design, product showcasing, and branding — all without needing to write code.',
+      description: 'I Designed the frontend of a web application using React and Vite.',
+      points: [
+        'Built fast performance and modular component-based architecture.',
+        'Built a dynamic UI builder interface, allowing users to easily create and customize their own eCommerce websites without writing code.',
+        'Developed reusable React components for core features like product cards, banners, carousels, and customizable layouts.',
+      ],
       technologies: ['React', 'Vite', 'VS code'],
       client: 'Startup Ventures',
       date: 'July 2022'
     },
     {
       id: 6,
-      title: 'To-do Mobile application ',
-      category: 'Mobile',
-      image: '/images/portfolio/todo.jpeg',
-      video: '/videos/todo.mp4', 
+      title: 'Yet To Be Come ',
+      category: 'Design',
+      image: '/images/portfolio/download.jpeg',
       width: 'square',
-      description: 'I have Created a simple and efficient To-Do application, designed to help users manage their daily tasks with ease. The app features task creation, editing, deletion, and completion tracking within a clean and responsive user interface. It ensures smooth performance across Android devices and showcases effective use of Flutter widgets, state management, and intuitive design for an organized task management experience.',
-      technologies: ['flutter', 'Dart', 'VS code '],
-      client: 'Creative Network',
-      date: 'May 2022'
+      description: 'Yet to be come.',
+      technologies: ['null', 'null', 'null'],
+      client: 'HealthFit',
+      date: 'September 2022'
     },
   ];
 
@@ -192,6 +223,16 @@ const PortfolioPage = () => {
                 <span><strong>Category:</strong> {selectedItem.category}</span>
               </div>
               <p className="description">{selectedItem.description}</p>
+              {selectedItem.points && selectedItem.points.length > 0 && (
+  <div className="feature-points">
+    <h4>Key Features:</h4>
+    <ul>
+      {selectedItem.points.map((point, index) => (
+        <li key={index}>{point}</li>
+      ))}
+    </ul>
+  </div>
+)}
               <div className="technologies">
                 <h4>Technologies Used:</h4>
                 <ul>

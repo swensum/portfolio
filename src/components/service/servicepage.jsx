@@ -53,7 +53,7 @@ const ServicePage = () => {
           "User-Friendly Interfaces",
           "End-to-End Development"
         ],
-        fulldescriptions:"I build Android and IOS apps that are fast, user-friendly, and reliable. From planning to launch,I make sure the app looksgood, works smoothly, and meets the needs of the users",
+        fulldescriptions:"I design and develop high-performance Android and iOS applications that deliver smooth, intuitive, and engaging user experiences. From initial planning and design to development, testing, and launch, I ensure every app looks great, functions flawlessly, and meets the unique needs of its users. Whether it’s a simple utility or a complex cross-platform solution, my focus is on building reliable apps that keep users coming back.",
       }
 
     },
@@ -69,7 +69,7 @@ const ServicePage = () => {
           "Performance Optimization",
           "SEO-Friendly Development"
         ],
-      fulldescriptions: "I create responsive and modern websites that work well on all devices. From front-end design functionality, I focus on building websites that are fast, easy to use, and tailored to your needs.",
+      fulldescriptions: "I create responsive, modern websites designed to deliver seamless user experiences across all devices and screen sizes. Combining clean, intuitive front-end design with efficient functionality, I build websites that are not only visually appealing but also fast, reliable, and easy to navigate. Whether you need a simple portfolio, a dynamic business site, or a custom web solution tailored to your unique goals, I focus on performance and usability to help your online presence stand out and grow.",
       }
     },
     {
@@ -79,12 +79,12 @@ const ServicePage = () => {
       details: {
         image: "/images/database.jpg",
         features: [
-          "Data Organization & Structure",
-          "Data Security",
+          "Efficient Data Organization & Schema Design",
+          "Advanced Data Security",
           "Performance Optimization",
-          "Backup & Recovery Solutions"
+          "Reliable Backup & Recovery Solutions "
         ],
-        fulldescriptions: "I design and manage databases that store and organize data efficiently. Whether it’s for a website or an app, I make sure the data is secure, well-structured, and easy to access when needed.",
+        fulldescriptions: "I specialize in designing and managing robust database systems that ensure your data is well-organized, secure, and always available when you need it. From relational databases like SQL and SQL Server to modern cloud-based and NoSQL solutions like Firebase, Supabase, and MongoDB, I choose the right technology to match the needs of your application. Whether it's powering a web platform or a mobile app, I focus on data structure, security, and performance optimization, along with backup and recovery strategies to keep your systems running smoothly and your data safe.",
       }
     }
   ];
