@@ -24,7 +24,7 @@ const About = () => {
 
   const handleViewCV = () => {
     // Open CV in a new tab for viewing
-    window.open('/files/resume.pdf', '_blank');
+    window.open('/files/myresume.pdf', '_blank');
     
     // Optional: Trigger download after a delay (comment out if not needed)
     setTimeout(() => {
