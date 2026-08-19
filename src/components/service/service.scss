@@ -1,442 +1,412 @@
-@import '../../styles/theme';
+// Same token set as homepage.scss / about.scss / skill.scss — pull into a
+// shared _tokens.scss partial once you're happy with the direction.
+$bg-ink: #0b1220;
+$bg-surface: #121b2e;
+$bg-surface-2: #17223a;
+$accent-amber: #e8a34d;
+$accent-teal: #52c7b8;
+$text-light: #edeff4;
+$text-muted: #93a0b7;
+
+$font-display: 'Bricolage Grotesque', 'Inter', sans-serif;
+$font-body: 'Inter', -apple-system, sans-serif;
+$font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+$radius-lg: 20px;
+$radius-md: 14px;
+$shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.45);
+$transition-normal: 0.3s ease;
 
 .service-page {
-    padding: 4rem;
-    background: $light-color;
-    z-index: $z-index-low;
-    padding-bottom: 8rem;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-  
+  padding: 6rem 4rem 8rem;
+  background: $bg-ink;
+  color: $text-light;
+  font-family: $font-body;
+  opacity: 0;
+  transition: opacity 1.2s ease-out;
 
-    @media (prefers-color-scheme: dark) {
-        background: $dark-color;
-    }
-
-    .service-hero {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        justify-content: space-between;
-        margin-bottom: 2rem;
-    }
-
-    .service-container {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        max-width: 450px;
-        margin-top: 20px;
-        margin-left: 100px;
-
-        .service-heading {
-            font-size: clamp(3rem, 2vw, 1rem);
-            font-family: $font-family-primary;
-            font-weight: bold;
-            letter-spacing: 0px;
-            opacity: 0; 
-      transform: translateX(-100%); 
-      transition: opacity 0.5s ease, transform 1.5s ease; 
-      &.fade-in {
-        opacity: 1; 
-        transform: translateX(0); 
-      }
-
-            .service-text {
-                margin-bottom: 0;
-                display: inline-block;
-            }
-
-            .service-line {
-                position: relative;
-                display: inline-block;
-
-                .service-underline {
-                    position: absolute;
-                    left: 100%;
-                    bottom: 0.2em;
-                    width: 100px;
-                    height: 2px;
-                    background: currentColor;
-                    margin-left: 4px;
-                }
-            }
-           
-        }
-        @media screen and (max-width: 868px) {
-            margin-left: 0;
-        }
-    }
-
-    .services-list-container {
-        position: relative;
-        width: 100%;
-        opacity: 0; 
-        transform: translateX(100%); 
-        transition: opacity 0.5s ease, transform 1.5s ease; 
-        &.fade-in {
-          opacity: 1; 
-          transform: translateX(0); 
-        }
-       
-    }
-
-    .services-list {
-        display: flex;
-        flex-direction: column;
-        max-width: 1130px;
-        margin: 0 auto;
-        position: relative;
-
-        --highlight-index: 0;
-
-        &::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: calc(100% / 4);
-            background: $primary-color;
-            z-index: 1;
-            transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
-            transform: translateY(calc(var(--highlight-index) * 100%));
-
-            @media (prefers-color-scheme: dark) {
-                background: $primary-color;
-            }
-          
-        }
-
-        .service-content {
-            display: flex;
-            align-items: flex-start;
-            gap: 2rem;
-            padding: 26px;
-            border-bottom: 1px solid $dark-color;
-            cursor: pointer;
-            position: relative;
-            z-index: 2;
-
-
-            &:first-child {
-                border-top: 1px solid $dark-color;
-            }
-
-            @media (prefers-color-scheme: dark) {
-                border-color: $light-color;
-            }
-
-            &::after {
-                content: "↑";
-                position: absolute;
-                right: 20px;
-                top: 50%;
-                transform: translateY(-50%) rotate(45deg);
-                font-size: 2.2rem;
-                transition: transform 0.3s ease;
-            }
-
-            &:hover::after {
-                transform: translateY(-50%) rotate(45deg) translateY(-5px);
-            }
-
-            .service-number {
-                font-size: 1.5rem;
-                font-weight: bold;
-                color: $primary-color;
-                min-width: 40px;
-                margin: 0;
-                font-family: $font-family-primary;
-                align-self: flex-start;
-                transition: color 0.3s ease;
-            }
-
-            .service-item {
-                display: flex;
-                align-items: flex-start;
-                justify-content: space-between;
-                width: 85%;
-
-                .service-title {
-                    font-size: 1.9rem;
-                    font-family: $font-family-secondary;
-                    font-weight: bold;
-                    min-width: 200px;
-                    margin: 0;
-                    line-height: 1.3;
-                    transition: color 0.3s ease;
-                    color: $dark-color;
-
-                    @media (prefers-color-scheme: dark) {
-                        color:  rgba($light-color, 0.8);
-                    }
-                    @media screen and (max-width: 868px) {
-            font-size: 1.5rem;
-                    }
-                }
-
-                .service-description {
-                    font-size: 1.1rem;
-                    line-height: 1.5;
-                    font-family: $font-family-primary;
-                    max-width: 500px;
-                    margin: 0;
-                    padding-top: 0.3rem;
-                    transition: color 0.3s ease;
-                    color: $dark-color;
-
-                    @media (prefers-color-scheme: dark) {
-                        color:  rgba($light-color, 0.8);
-                    }
-                }
-                @media screen and (max-width: 868px) {
-                  flex-direction: column;
-                  gap: 2px;
-                }
-            }
-
-            &::after {
-                content: "↑";
-                position: absolute;
-                right: 20px;
-                top: 50%;
-                transform: translateY(-50%) rotate(45deg);
-                font-size: 2.2rem;
-                transition: transform 0.3s ease, color 0.3s ease;
-                @media screen and (max-width: 868px) {
-            right: 0;
-                }
-            }
-
-            &.highlighted {
-
-                .service-number,
-                .service-title,
-                &::after {
-                    color: white;
-                }
-
-                .service-description {
-                    color: white;
-                }
-            }
-        }
-    }
-    .service-modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 1000;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-        .modal-overlay {
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background-color: rgba(0, 0, 0, 0.7);
-        }
-        
-        .modal-content {
-          position: relative;
-          background: white;
-          padding-left: 2rem;
-          padding-right: 2rem;
-          border-radius: 8px;
-          max-width: 800px;
-          width: 90%;
-          max-height: 80vh;
-          overflow-y: auto;
-          z-index: 1001;
-          
-          @media (prefers-color-scheme: dark) {
-            background: $dark-color;
-            color: $light-color;
-          }
-          
-          .service-detail {
-            display: flex;
-           
-          
-            flex-direction: column;
-             
-            
-            @media (max-width: 768px) {
-              flex-direction: column;
-            }
-          }
-          
-          .service-image-container {
-       
-            .service-image {
-               padding-top: 5%;
-              width: 100%;
-              height: 400px;
-              border-radius: 16px;
-              object-fit:cover;
-            }
-          }
-          
-          .service-info {
-            padding: 0;
-            margin: 0;
-          font-family: $font-family-primary;
-                font-size: 2rem;
-                color: #cac70c;
-
-      .service-full-description {
-        margin-top: 0;
-
-        padding-bottom: 10px;
-        p {
-          font-size: 1.1rem;
-          
-          color: $dark-color;
-          
-          @media (prefers-color-scheme: dark) {
-            color: rgba($light-color, 0.9);
-          }
-        }
-      }
-      
-            .service-features {
-              margin-bottom: 1.5rem;
-              
-              h4 {
-                font-size: 1.3rem;
-                margin-bottom: 0.5rem;
-                color: #cac70c;
-              }
-              
-              ul {
-                  font-size: 1.3rem;
-                padding-left: 1.5rem;
-                
-                li {
-                  margin-bottom: 0.5rem;
-                  line-height: 1.5;
-                }
-              }
-            }
-          }
-        }
-        
-        .close-button {
-            position: fixed;
-            top: 5.5rem;
-            right: 14rem;
-            background: none;
-            border: 3px solid $light-color;
-            border-radius: 30%;
-            width: 3rem;
-            height: 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0; // Crucial for icon visibility
-            margin: 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1002; // Ensure it's above other elements
-        
-            // Direct icon styling
-            > svg {
-              width: 1.2rem;
-              height: 1.2rem;
-              color: $light-color !important; // Force color
-              fill: currentColor !important; // SVG specific
-            }
-        
-            @media (prefers-color-scheme: dark) {
-              border-color: $light-color;
-              
-              > svg {
-                color: $light-color !important;
-                fill: currentColor !important;
-              }
-            }
-        
-            &:hover {
-             border-radius: 50%;
-            }
-            @media screen and (max-width: 868px) {
-            top: 19px;
-            }
-          }
-      }
-      @media (max-width: 768px) {
-        .service-page {
-          padding: 2rem; 
-       
-      
-          .service-container {
-            margin-left: 0;
-            max-width: 100%;
-            padding: 0 1rem;
-           
-          
-          }
-      
-          
-      
-          .modal-content {
-            padding-left: 1rem;
-            padding-right: 1rem;
-      
-            .service-image-container .service-image {
-              height: 250px; // smaller image on mobile
-            }
-      
-            .service-info {
-              font-size: 1.5rem;
-      
-              .service-full-description p {
-                font-size: 1rem;
-              }
-      
-              .service-features {
-                h4 {
-                  font-size: 1.1rem;
-                }
-      
-                ul {
-                  font-size: 1rem;
-                }
-              }
-            }
-          }
-      
-          .close-button {
-            position: absolute; // better than fixed for modal
-            top: 1rem;
-            right: 1rem;
-            width: 2.5rem;
-            height: 2.5rem;
-      
-            > svg {
-              width: 1rem;
-              height: 1rem;
-            }
-          }
-        }
-      }
-      
+  .service-hero {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1130px;
+  margin: 20px auto 2rem;
 }
+
+   .service-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+
+    .eyebrow {
+      font-family: $font-mono;
+      font-size: 0.85rem;
+      color: $accent-amber;
+      margin: 0 0 10px;
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+
+      &.fade-in {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .service-heading {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-family: $font-display;
+      font-weight: 600;
+      line-height: 1.15;
+      margin: 0;
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: opacity 0.6s ease 0.1s, transform 0.6s ease 0.1s;
+
+      &.fade-in {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .service-line {
+        position: relative;
+        display: inline-block;
+        color: $accent-amber;
+
+        .service-underline {
+          position: absolute;
+          left: 100%;
+          bottom: 0.25em;
+          width: 70px;
+          height: 2px;
+          background: $accent-teal;
+          margin-left: 10px;
+        }
+      }
+    }
+
+    @media screen and (max-width: 868px) {
+      margin-left: 0;
+    }
+  }
+
+  // ------------------------------------------------------------------
+  // Hover / highlight mechanic — same sliding bar + arrow rotation +
+  // color-swap logic and timing as the original, only the colors changed.
+  // ------------------------------------------------------------------
+  .services-list-container {
+    position: relative;
+    width: 100%;
+    opacity: 0;
+    transform: translateX(60px);
+    transition: opacity 0.6s ease 0.15s, transform 0.6s ease 0.15s;
+
+    &.fade-in {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .services-list {
+    display: flex;
+    flex-direction: column;
+    max-width: 1130px;
+    margin: 0 auto;
+    position: relative;
+
+    --highlight-index: 0;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: calc(100% / 4);
+      background: $accent-amber;
+      z-index: 1;
+      transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+      transform: translateY(calc(var(--highlight-index) * 100%));
+      border-radius: $radius-md;
+    }
+
+    .service-content {
+      display: flex;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 26px;
+      border-bottom: 1px solid rgba($text-light, 0.1);
+      cursor: pointer;
+      position: relative;
+      z-index: 2;
+
+      &:first-child {
+        border-top: 1px solid rgba($text-light, 0.1);
+      }
+
+      &::after {
+        content: '↑';
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%) rotate(45deg);
+        font-size: 2.2rem;
+        color: $text-muted;
+        transition: transform 0.3s ease, color 0.3s ease;
+
+        @media screen and (max-width: 868px) {
+          right: 0;
+        }
+      }
+
+      &:hover::after {
+        transform: translateY(-50%) rotate(45deg) translateY(-5px);
+      }
+
+      .service-number {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: $accent-teal;
+        min-width: 40px;
+        margin: 0;
+        font-family: $font-mono;
+        align-self: flex-start;
+        transition: color 0.3s ease;
+      }
+
+      .service-item {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 85%;
+
+        .service-title {
+          font-size: 1.8rem;
+          font-family: $font-display;
+          font-weight: 600;
+          min-width: 200px;
+          margin: 0;
+          line-height: 1.3;
+          transition: color 0.3s ease;
+          color: $text-light;
+
+          @media screen and (max-width: 868px) {
+            font-size: 1.4rem;
+          }
+        }
+
+        .service-description {
+          font-size: 1.05rem;
+          line-height: 1.55;
+          font-family: $font-body;
+          max-width: 500px;
+          margin: 0;
+          padding-top: 0.3rem;
+          transition: color 0.3s ease;
+          color: $text-muted;
+        }
+
+        @media screen and (max-width: 868px) {
+          flex-direction: column;
+          gap: 2px;
+        }
+      }
+
+      &.highlighted {
+        .service-number,
+        .service-title,
+        &::after {
+          color: $bg-ink;
+        }
+
+        .service-description {
+          color: rgba($bg-ink, 0.75);
+        }
+      }
+    }
+  }
+
+  // ------------------------------ service modal ------------------------------
+  .service-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+
+    .modal-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(3px);
+    }
+
+    .modal-content {
+      position: relative;
+      background: $bg-surface;
+      color: $text-light;
+      padding: 2.5rem 2rem;
+      border-radius: $radius-lg;
+      border: 1px solid rgba($text-light, 0.08);
+      max-width: 800px;
+      width: 100%;
+      max-height: 80vh;
+      overflow-y: auto;
+      z-index: 1001;
+      box-shadow: $shadow-lg;
+
+      .service-detail {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .service-image-container {
+        .service-image {
+          width: 100%;
+          height: 340px;
+          border-radius: $radius-md;
+          object-fit: cover;
+          border: 1px solid rgba($text-light, 0.08);
+        }
+      }
+
+      .service-info {
+        padding: 0;
+        margin-top: 1.5rem;
+        font-family: $font-body;
+
+        .modal-eyebrow {
+          font-family: $font-mono;
+          font-size: 0.8rem;
+          color: $accent-amber;
+          margin: 0 0 6px;
+        }
+
+        h3 {
+          font-family: $font-display;
+          font-size: 1.9rem;
+          font-weight: 600;
+          margin: 0 0 1rem;
+          color: $text-light;
+        }
+
+        .service-full-description {
+          margin-top: 0;
+          padding-bottom: 10px;
+
+          p {
+            font-size: 1.05rem;
+            line-height: 1.7;
+            color: $text-muted;
+          }
+        }
+
+        .service-features {
+          margin-bottom: 0.5rem;
+
+          h4 {
+            font-family: $font-mono;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 0.75rem;
+            color: $accent-teal;
+          }
+
+          ul {
+            font-size: 1rem;
+            padding-left: 1.25rem;
+            color: $text-light;
+
+            li {
+              margin-bottom: 0.5rem;
+              line-height: 1.5;
+            }
+          }
+        }
+      }
+    }
+
+    .close-button {
+      position: absolute;
+      top: 1.25rem;
+      right: 1.25rem;
+      background: rgba($text-light, 0.06);
+      border: 1px solid rgba($text-light, 0.12);
+      border-radius: 30%;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      cursor: pointer;
+      transition: border-radius 0.3s ease, border-color $transition-normal, background-color $transition-normal;
+      z-index: 1002;
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+        color: $text-light;
+        transition: color $transition-normal;
+      }
+
+      &:hover {
+        border-radius: 50%;
+        border-color: $accent-amber;
+        background: rgba($accent-amber, 0.12);
+
+        svg {
+          color: $accent-amber;
+        }
+      }
+    }
+  }
+}
+
 .fade-in {
   opacity: 1;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
+@media (max-width: 768px) {
+  .service-page {
+    padding: 3rem 1.5rem;
+
+    .service-container {
+      margin: 20px 0 0;
+      max-width: 100%;
+    }
+
+    .modal-content {
+      padding: 1.5rem 1.25rem !important;
+
+      .service-image-container .service-image {
+        height: 220px;
+      }
+
+      .service-info h3 {
+        font-size: 1.5rem;
+      }
+    }
   }
-  to {
-    opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .service-page {
+    .eyebrow,
+    .service-heading,
+    .services-list-container {
+      transition: opacity 0.4s ease !important;
+      transform: none !important;
+    }
+
+    .close-button {
+      transition: border-color 0.2s ease, background-color 0.2s ease, border-radius 0.2s ease !important;
+    }
   }
 }

@@ -1,0 +1,71 @@
+.ambient-background {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+
+  .ambient-glow {
+    position: absolute;
+    top: -12%;
+    left: 50%;
+    width: 900px;
+    height: 900px;
+    max-width: 140vw;
+    transform: translateX(-50%);
+    background: radial-gradient(
+      circle,
+      rgba(232, 163, 77, 0.16) 0%,
+      rgba(82, 199, 184, 0.08) 45%,
+      transparent 70%
+    );
+    filter: blur(10px);
+  }
+
+  .ridge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 60%;
+    fill: none;
+
+    path {
+      fill: currentColor;
+    }
+  }
+
+  .ridge--back {
+    color: rgba(82, 199, 184, 0.1);
+    animation: driftLeft 70s linear infinite;
+  }
+
+  .ridge--mid {
+    color: rgba(232, 163, 77, 0.1);
+    animation: driftLeft 50s linear infinite reverse;
+  }
+
+  .ridge--front {
+    color: rgba(237, 239, 244, 0.05);
+    animation: driftLeft 34s linear infinite;
+  }
+
+  &.is-static .ridge {
+    animation: none;
+  }
+}
+
+@keyframes driftLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-background .ridge {
+    animation: none !important;
+  }
+}

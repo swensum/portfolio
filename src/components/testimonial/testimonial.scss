@@ -1,109 +1,123 @@
-@import '../../styles/theme';
+// Same token set as the rest of the site — pull into a shared
+// _tokens.scss partial once you're happy with the direction.
+$bg-ink: #0b1220;
+$bg-surface: #121b2e;
+$bg-surface-2: #17223a;
+$accent-amber: #e8a34d;
+$accent-teal: #52c7b8;
+$text-light: #edeff4;
+$text-muted: #93a0b7;
+
+$font-display: 'Bricolage Grotesque', 'Inter', sans-serif;
+$font-body: 'Inter', -apple-system, sans-serif;
+$font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+$radius-lg: 20px;
+$radius-md: 14px;
+$transition-normal: 0.3s ease;
 
 .testimonials-page {
   position: relative;
   width: 100%;
   overflow: hidden;
-  
-  
+  font-family: $font-body;
+  color: $text-light;
+
+  .loading-container {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background: $bg-ink;
+    color: $text-muted;
+    font-family: $font-mono;
+    font-size: 0.9rem;
+
+    .loading-spinner {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 3px solid rgba($text-light, 0.12);
+      border-top-color: $accent-teal;
+      animation: spin 0.8s linear infinite;
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   .block-container {
-    position: relative; 
-    padding-top: 3rem;
-    min-height: 100vh;
-    background-color:$light-color;
+    position: relative;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    min-height: 80vh;
+    background-color: $bg-ink;
     z-index: 1;
     opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-    @media (prefers-color-scheme: dark) {
-        background: $dark-color;
-    }
-   
-    .side-block {
-      position: absolute;
-      width: 350px;
-      height: 50%;
-      background-color: #cac70c;
-      opacity: 0.5;
-      z-index: -1;
-    }
-  
-    .left-block {
-      left: 0;
-      top: 20;
-      border-top-right-radius: 26px;
-      border-bottom-right-radius: 26px;
-      opacity: 0; // Initial state
-      transform: translateY(100%); // Slide in from below
-      transition: opacity 0.5s ease, transform 1.5s ease; 
-      &.fade-in {
-        opacity: 1; // Fade in
-        transform: translateY(0); // Move to original position
-      }
-    }
-  
-    .right-block {
-      right: 0;
-      top: 60%;
-      height: 30%;
-      border-top-left-radius: 20px;
-      border-bottom-left-radius: 20px; 
-      opacity: 0; // Initial state
-      transform: translateY(-100%); // Slide in from below
-      transition: opacity 0.5s ease, transform 1.5s ease; 
-      &.fade-in {
-        opacity: 1; // Fade in
-        transform: translateY(0); // Move to original position
-      }
-    }
+    transition: opacity 1.2s ease-out;
 
+    
     .testimonials-hero {
       width: 100%;
       display: flex;
       justify-content: center;
-      padding: 4rem 1rem 2rem;
+      padding: 3rem 1rem 1rem;
       position: relative;
       z-index: 2;
 
       .testimonials-container {
         width: 100%;
-        max-width: 1200px;
+        max-width: 700px;
         text-align: center;
+
+        .eyebrow {
+          font-family: $font-mono;
+          font-size: 0.85rem;
+          color: $accent-amber;
+          margin: 0 0 10px;
+          opacity: 0;
+          transition: opacity 0.6s ease;
+
+          &.fade-in {
+            opacity: 1;
+          }
+        }
 
         .testimonials-heading {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: clamp(1.5rem, 2.5vw, 2rem);
-          font-family: $font-family-secondary;
-          color: $dark-color;
-          gap: 5px;
-          margin-bottom: 1rem;
-          opacity: 0; // Initial state
-          transform: translateY(-100%); // Slide in from below
-          transition: opacity 0.5s ease, transform 1.5s ease; 
+          font-size: clamp(1.6rem, 3vw, 2.2rem);
+          font-family: $font-display;
+          font-weight: 600;
+          color: $text-light;
+          gap: 12px;
+          margin-bottom: 0.75rem;
+          opacity: 0;
+          transition: opacity 0.6s ease 0.1s;
+
           &.fade-in {
-            opacity: 1; // Fade in
-            transform: translateY(0); // Move to original position
+            opacity: 1;
           }
-          @media (prefers-color-scheme: dark) {
-            color: $light-color;
-        }
+
           .heading-testimonials {
             transition: color 0.3s ease;
             white-space: nowrap;
           }
 
           .inline {
-            margin-top: 12px;
             flex-grow: 1;
-            height: 2px;
-            background: $dark-color;
-            max-width: 100px;
+            height: 1px;
+            background: rgba($text-light, 0.15);
+            max-width: 80px;
             position: relative;
             overflow: hidden;
-            @media (prefers-color-scheme: dark) {
-                background-color: $light-color;
-            }
+
             &::before {
               content: '';
               position: absolute;
@@ -111,16 +125,16 @@
               top: 0;
               width: 100%;
               height: 100%;
-              background: #cac70c;
+              background: $accent-teal;
               transition: transform 0.3s ease;
             }
           }
 
           &:hover {
             .heading-testimonials {
-              color: #cac70c;
+              color: $accent-amber;
             }
-            
+
             .inline::before {
               transform: translateX(100%);
             }
@@ -128,16 +142,15 @@
         }
 
         .subtitle {
-          font-size: clamp(1.5rem, 3vw, 2.5rem);
-          font-family: $font-family-secondary;
-          color: #cac70c;
+          font-size: clamp(1rem, 1.8vw, 1.15rem);
+          font-family: $font-body;
+          color: $text-muted;
           margin: 0;
-          opacity: 0; // Initial state
-          transform: translateY(-100%); // Slide in from below
-          transition: opacity 0.5s ease, transform 1.5s ease; 
+          opacity: 0;
+          transition: opacity 0.6s ease 0.2s;
+
           &.fade-in {
-            opacity: 1; // Fade in
-            transform: translateY(0); // Move to original position
+            opacity: 1;
           }
         }
       }
@@ -145,19 +158,24 @@
 
     .testimonials-grid {
       width: 100%;
-      padding: 2rem 1rem;
+      padding: 2rem 1rem 0;
       display: flex;
       flex-direction: column;
-    align-items: center;
-      position: relative; 
+      align-items: center;
+      position: relative;
       z-index: 2;
-      overflow: hidden;
-      opacity: 0; // Initial state
-      transform: translateX(100%); // Slide in from below
-      transition: opacity 0.5s ease, transform 1.5s ease; 
+      opacity: 0;
+      transition: opacity 0.6s ease 0.25s;
+
       &.fade-in {
-        opacity: 1; // Fade in
-        transform: translateX(0); // Move to original position
+        opacity: 1;
+      }
+
+      .no-testimonials {
+        color: $text-muted;
+        font-family: $font-mono;
+        padding: 2rem;
+        text-align: center;
       }
 
       .testimonials-wrapper {
@@ -165,97 +183,112 @@
         max-width: 1200px;
         overflow: hidden;
         position: relative;
-        padding: 1rem 0; // Added padding top and bottom
+        padding: 1rem 0;
 
         .testimonials-slider {
           display: flex;
           transition: transform 0.5s ease-in-out;
           width: 100%;
-          gap: 2rem; // Added gap between cards
-          padding: 0 1rem; // Added horizontal padding
+          gap: 2rem;
+          padding: 0 1rem;
 
           .testimonial-card {
-            flex: 0 0 calc((100% / 3) - 1.33rem); // Adjusted for gap
+            flex: 0 0 calc((100% / 3) - 1.33rem);
             box-sizing: border-box;
             position: relative;
-            background: lighten($bg-primary, 5%);
-            border-radius: 10px;
+            background: $bg-surface;
+            border: 1px solid rgba($text-light, 0.08);
+            border-radius: $radius-lg;
             padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            margin: 0; // Removed individual margins since we're using gap now
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
 
             &:hover {
               transform: translateY(-5px);
+              border-color: rgba($accent-teal, 0.4);
+            }
+
+            .quote-mark {
+              position: absolute;
+              top: 18px;
+              right: 22px;
+              font-size: 1.6rem;
+              color: rgba($accent-amber, 0.2);
             }
 
             .testimonial-header {
               display: flex;
               align-items: center;
               margin-bottom: 1.5rem;
+              position: relative;
+              z-index: 1;
 
               .client-image {
-                width: 70px;
-                height: 70px;
+                width: 60px;
+                height: 60px;
                 border-radius: 50%;
                 object-fit: cover;
-                border: 3px solid #cac70c;
-                margin-right: 1.5rem;
+                border: 2px solid $accent-amber;
+                margin-right: 1.25rem;
+                flex-shrink: 0;
               }
 
               .client-info {
                 text-align: left;
 
                 h3 {
-                  font-family: $font-family-secondary;
-                  color: $light-color;
-                  margin: 0 0 0.3rem;
-                  font-size: 1.2rem;
+                  font-family: $font-display;
+                  font-weight: 600;
+                  color: $text-light;
+                  margin: 0 0 0.25rem;
+                  font-size: 1.1rem;
                 }
 
                 p {
-                  font-family: $font-family-primary;
-                  color: rgba($light-color, 0.7);
+                  font-family: $font-body;
+                  color: $text-muted;
                   margin: 0 0 0.5rem;
-                  font-size: 0.9rem;
+                  font-size: 0.85rem;
                 }
 
                 .rating {
                   .star {
-                    color: #cac70c;
-                    font-size: 1.1rem;
+                    color: $accent-amber;
+                    font-size: 1rem;
                   }
                 }
               }
             }
 
             .testimonial-content {
+              position: relative;
+              z-index: 1;
+
               p {
-                font-family: $font-family-primary;
-                color: $light-color;
-                line-height: 1.6;
+                font-family: $font-body;
+                color: $text-muted;
+                line-height: 1.65;
                 font-style: italic;
                 margin: 0;
               }
             }
+
             @media screen and (max-width: 868px) {
-              flex: 0 0 100%; // Each slide takes full width on small screens
+              flex: 0 0 100%;
               max-width: 70%;
               padding: 1.5rem;
             }
-            
           }
+
           @media screen and (max-width: 868px) {
-            flex-wrap: nowrap; 
-            
-            transform: translateX(0); // Optional: resets position
+            flex-wrap: nowrap;
+            transform: translateX(0);
             width: 100%;
             gap: 9rem;
-            
-
           }
         }
       }
+
       .testimonials-navigation {
         display: flex;
         justify-content: center;
@@ -263,74 +296,70 @@
         gap: 2rem;
         margin-top: 2rem;
         padding: 0 1rem;
-    
+
         .nav-arrow {
-            background: transparent;
-            border: none;
-            color: #cac70c;
-            font-size: 1.2rem;
-            cursor: pointer;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            padding: 0;
-    
+          appearance: none;
+          -webkit-appearance: none;
+          box-sizing: border-box;
+          background: rgba($text-light, 0.05);
+          border: 1px solid rgba($text-light, 0.12);
+          color: $text-light;
+          font-size: 1rem;
+          cursor: pointer;
+          width: 42px;
+          height: 42px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: $transition-normal;
+          margin: 0;
+          padding: 0;
+
           &:hover {
-            background: rgba(#cac70c, 0.1);
-            transform: scale(1.1);
+            border-color: $accent-amber;
+            color: $accent-amber;
+            transform: scale(1.08);
           }
-    
+
           &:active {
             transform: scale(0.95);
           }
+
           svg {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
           }
         }
-    
+
         .dots-indicator {
           display: flex;
-          gap: 0.8rem;
-    
+          gap: 0.7rem;
+
           .dot {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
-            background: #6b97d3;
-            opacity: 0.4;
+            background: rgba($text-light, 0.2);
             cursor: pointer;
-            transition: all 0.3s ease;
-    
+            transition: $transition-normal;
+
             &.active {
-              background: #cac70c;
+              background: $accent-amber;
               transform: scale(1.2);
             }
-    
+
             &:hover {
               transform: scale(1.1);
             }
           }
         }
       }
-    
     }
   }
+
   .fade-in {
     opacity: 1;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
   }
 }
 
@@ -338,47 +367,58 @@
   .testimonials-page {
     .block-container {
       .side-block {
-        width: 200px;
-        height: 30%;
+        width: 240px;
+        height: 240px;
       }
 
       .left-block {
         top: 10px;
+        left: -100px;
       }
 
       .right-block {
-        top: 70%;
-        height: 20%;
+        bottom: 10px;
+        right: -100px;
       }
 
-      .testimonials-grid {
-        .testimonials-wrapper {
-          overflow: hidden;
+      .testimonials-navigation {
+        gap: 1rem;
 
-          .testimonials-navigation {
-            gap: 1rem;
+        .nav-arrow {
+          width: 36px;
+          height: 36px;
 
-            .nav-arrow {
-              width: 35px;
-              height: 35px;
+          svg {
+            width: 14px;
+            height: 14px;
+          }
+        }
 
-              svg {
-                width: 18px;
-                height: 18px;
-              }
-            }
+        .dots-indicator {
+          gap: 0.5rem;
 
-            .dots-indicator {
-              gap: 0.6rem;
-
-              .dot {
-                width: 8px;
-                height: 8px;
-              }
-            }
+          .dot {
+            width: 8px;
+            height: 8px;
           }
         }
       }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonials-page {
+    .eyebrow,
+    .testimonials-heading,
+    .subtitle,
+    .testimonials-grid,
+    .side-block {
+      transition: opacity 0.4s ease !important;
+    }
+
+    .loading-spinner {
+      animation-duration: 1.6s;
     }
   }
 }

@@ -9,38 +9,31 @@ const CertificatesModal = ({ setShowModal }) => {
 
   return (
     <div className="certificates-modal">
-      <div 
-        className="modal-overlay" 
+      <div
+        className="modal-overlay"
         onClick={(e) => {
           if (e.target.classList.contains('modal-overlay')) {
             setShowModal(false);
           }
         }}
       />
-      <div 
-        className="modal-content"
-        onClick={(e) => e.stopPropagation()}
-        onWheel={handleWheel}
-      >
-        <button className="close-button" onClick={() => setShowModal(false)}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()} onWheel={handleWheel}>
+        <button type="button" className="close-button" onClick={() => setShowModal(false)} aria-label="Close certificates">
           <FaTimes />
         </button>
+        <p className="modal-eyebrow">// Certificates</p>
         <h3>My Certificates</h3>
         <div className="certificates-grid">
-          {certificates.map(cert => (
+          {certificates.map((cert) => (
             <div key={cert.id} className="certificate-item">
-            <div className="certificate-image-container">
-                <img 
-                  src={cert.image} 
-                  alt={`${cert.title} certificate`}
-                  className="certificate-image"
-                />
+              <div className="certificate-image-container">
+                <img src={cert.image} alt={`${cert.title} certificate`} className="certificate-image" />
               </div>
               <div className="certificate-info">
                 <h4>{cert.title}</h4>
-                <p>Issued by: {cert.issuer}</p>
-                <span>Completed: {cert.date}</span>
-            </div>
+                <p>Issued by {cert.issuer}</p>
+                <span>Completed {cert.date}</span>
+              </div>
             </div>
           ))}
         </div>

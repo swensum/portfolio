@@ -1,46 +1,36 @@
 import React from 'react';
 import { FaReact, FaAndroid, FaDatabase } from 'react-icons/fa';
 import { SiFlutter, SiFirebase, SiJavascript } from 'react-icons/si';
-import { FaJava } from 'react-icons/fa'; // Java icon is in the FA package
+
+const SKILLS = [
+  { key: 'react', label: 'React', Icon: FaReact, color: '#61DAFB' },
+  { key: 'flutter', label: 'Flutter', Icon: SiFlutter, color: '#54C5F8' },
+  { key: 'android', label: 'Android', Icon: FaAndroid, color: '#3DDC84' },
+  { key: 'firebase', label: 'Firebase', Icon: SiFirebase, color: '#FFCA28' },
+  { key: 'javascript', label: 'JavaScript', Icon: SiJavascript, color: '#F7DF1E' },
+  { key: 'sql', label: 'SQL', Icon: FaDatabase, color: '#52C7B8' },
+];
 
 const SkillsContent = ({ percentages }) => (
   <div className="skills-icons-container" key="skills">
-    <div className="skill-icon">
-      <div className="icon-circle">
-        <FaReact className="icon" />
+    {SKILLS.map(({ key, label, Icon, color }) => (
+      <div className="skill-icon" key={key}>
+        <div className="icon-circle" style={{ '--skill-color': color }}>
+          <Icon className="icon" />
+        </div>
+        <div className="skill-meta">
+          <span className="skill-name">{label}</span>
+          <span className="skill-percent">{percentages[key]}%</span>
+        </div>
+        <div className="skill-bar">
+          <div
+            className="skill-bar-fill"
+            style={{ width: `${percentages[key]}%`, '--skill-color': color }}
+          />
+        </div>
       </div>
-      <span>React({percentages.react}%)</span>
-    </div>
-    <div className="skill-icon">
-      <div className="icon-circle">
-        <SiFlutter className="icon" />
-      </div>
-      <span>Flutter({percentages.flutter}%)</span>
-    </div>
-    <div className="skill-icon">
-      <div className="icon-circle">
-        <FaAndroid className="icon" />
-      </div>
-      <span>Android({percentages.android}%)</span>
-    </div>
-    <div className="skill-icon">
-      <div className="icon-circle">
-        <SiFirebase className="icon" />
-      </div>
-      <span>Firebase({percentages.firebase}%)</span>
-    </div>
-    <div className="skill-icon">
-      <div className="icon-circle">
-        <SiJavascript className="icon" />
-      </div>
-      <span>JavaScript({percentages.javascript}%)</span>
-    </div>
-    <div className="skill-icon">
-      <div className="icon-circle">
-        <FaDatabase className="icon" />
-      </div>
-      <span>SQL({percentages.sql}%)</span>
-    </div>
+    ))}
   </div>
 );
+
 export default SkillsContent;
