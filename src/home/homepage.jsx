@@ -101,9 +101,6 @@ const LandingPage = () => {
 
   const handleHeroMouseLeave = useCallback(() => setTilt({ x: 0, y: 0 }), []);
 
-  // Try to autoplay on mount. Most browsers block audio with sound
-  // before any user interaction, so this will likely fail silently —
-  // that's expected, the click-anywhere listener below picks up the slack.
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;

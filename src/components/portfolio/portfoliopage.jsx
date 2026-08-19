@@ -454,6 +454,38 @@ const PortfolioPage = () => {
 
               <p className="description">{selectedItem.description}</p>
 
+{selectedItem.link && (
+  <a
+    href={selectedItem.link}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="live-link"
+  >
+    Visit Live Site
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M7 17L17 7"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M7 7H17V17"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  </a>
+)}
               {selectedItem.points && selectedItem.points.length > 0 && (
                 <div className="feature-points">
                   <h4>Key Features</h4>

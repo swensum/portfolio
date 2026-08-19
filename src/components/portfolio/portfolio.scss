@@ -625,7 +625,34 @@ $rail-gap: 20px; // a clearly visible gap between cards, not just a hairline
           line-height: 1.65;
           color: $text-muted;
         }
+.live-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 1.25rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba($accent-teal, 0.4);
+  color: $accent-teal;
+  text-decoration: none;
+  font-family: $font-mono;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: $transition-normal;
 
+  svg {
+    transition: transform 0.25s ease;
+  }
+
+  &:hover {
+    background: rgba($accent-teal, 0.1);
+    border-color: $accent-teal;
+
+    svg {
+      transform: translate(2px, -2px);
+    }
+  }
+}
         .feature-points {
           margin-bottom: 1.5rem;
 
