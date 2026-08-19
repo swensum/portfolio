@@ -51,6 +51,27 @@ const CategoryRail = ({ items, variant, onOpenItem }) => {
     return () => window.removeEventListener('resize', updateRailState);
   }, [updateRailState]);
 
+  // Re-measure whenever the rendered content inside the track actually
+  // changes size. This is what catches images finishing their async load:
+  // each <img> is sized height:100%/width:auto, so its true width — and
+  // therefore whether the row overflows — isn't known until it loads.
+  // Without this, a row can get locked into "centered" mode based on a
+  // too-small scrollWidth measured before the last image resolved, which
+  // then clips the final card with no way to reach it.
+  useEffect(() => {
+    const el = trackRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return;
+
+    const observer = new ResizeObserver(() => {
+      updateRailState();
+    });
+
+    observer.observe(el);
+    el.querySelectorAll('img').forEach((img) => observer.observe(img));
+
+    return () => observer.disconnect();
+  }, [items, updateRailState]);
+
   const scrollByCards = (direction) => {
     const el = trackRef.current;
     if (!el) return;
@@ -128,7 +149,12 @@ const CategoryRail = ({ items, variant, onOpenItem }) => {
           {items.map((item) => (
             <div key={item.id} className="portfolio-item" onClick={() => handleOpen(item)}>
               <div className="item-image">
-                <img src={item.image} alt={item.title} draggable="false" />
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  draggable="false"
+                  onLoad={updateRailState}
+                />
                 <div className="image-overlay">
                   <span className="item-category">{item.category}</span>
                   <h3>{item.title}</h3>
@@ -287,14 +313,50 @@ const PortfolioPage = () => {
       client: 'Startup Ventures',
       date: 'July 2022'
     },
+    {
+      id: 6,
+      title: 'Devansh Suppliers (A Web Application)',
+      category: 'Web',
+      image: '/images/portfolio/devansh.png',
+      video: '/videos/Untitled.mov',
+      link: 'https://devansh-supplers.web.app/', 
+      description: 'A modern, responsive e-commerce website developed for Devansh Suppliers, a hardware and kitchen accessories business. The platform provides customers with an easy way to explore products, view detailed product information, and get in touch with the business.',
+      points: [
+        'Responsive Flutter Web storefront for desktop, tablet, and mobile',
+        'Firebase Firestore for product and application data',
+        'Cloudinary for optimized product image hosting',
+        'WhatsApp integration for quick customer inquiries',
+        'Firebase Hosting with CI/CD deployment workflow',
+      ],
+      technologies: ['Flutter', 'Firebase', 'Firestore', 'Cloudinary', 'GitHub', 'Firebase Hosting'],
+      client: 'Devansh Suppliers',
+      date: 'Auguest 2026'
+    },
+     {
+      id: 7,
+      title: 'Vegis (A E-commerce Website)',
+      category: 'Web',
+      image: '/images/portfolio/vegis.png',
+      video: '/videos/Untitled.mov',
+      link: 'https://bazar-to-ghar.vercel.app/', 
+      description: 'A modern and responsive e-commerce website built for an online fruits and vegetables store. The platform allows customers to browse fresh produce, explore product details, manage their shopping cart, and place orders through a simple and user-friendly interface.',
+      points: [
+        'Responsive e-commerce interface built with React and Vite',
+        'Product browsing with categories and detailed product information',
+        'Firebase Firestore for storing and managing product and order data',
+        'Responsive design optimized for desktop, tablet, and mobile',
+        'Clean and user-friendly shopping experience',
+      ],
+      technologies: ['React', 'Vite', 'Firestore', 'Vercel Domain', 'GitHub'],
+      
+      date: 'April 2025'
+    },
   ];
 
   const filteredItems = activeCategory === 'All'
     ? portfolioItems
     : portfolioItems.filter((item) => item.category === activeCategory);
 
-  // Group into one row per category — Mobile first, then Web — instead of
-  // mixing every shape into a single rail.
   const groups = CATEGORY_ORDER
     .map((category) => ({
       category,
