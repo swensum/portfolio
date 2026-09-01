@@ -318,7 +318,7 @@ const PortfolioPage = () => {
       title: 'Devansh Suppliers (A Web Application)',
       category: 'Web',
       image: '/images/portfolio/devansh.png',
-      video: '/videos/Untitled.mov',
+      video: '/videos/devansh.mov',
       link: 'https://devansh-supplers.web.app/', 
       description: 'A modern, responsive e-commerce website developed for Devansh Suppliers, a hardware and kitchen accessories business. The platform provides customers with an easy way to explore products, view detailed product information, and get in touch with the business.',
       points: [
@@ -337,7 +337,7 @@ const PortfolioPage = () => {
       title: 'Vegis (A E-commerce Website)',
       category: 'Web',
       image: '/images/portfolio/vegis.png',
-      video: '/videos/Untitled.mov',
+      video: '/videos/bazar.mp4',
       link: 'https://bazar-to-ghar.vercel.app/', 
       description: 'A modern and responsive e-commerce website built for an online fruits and vegetables store. The platform allows customers to browse fresh produce, explore product details, manage their shopping cart, and place orders through a simple and user-friendly interface.',
       points: [
